@@ -1041,4 +1041,218 @@ function openHotel(id){
      <strong>こんな家族に：</strong>${h.recommendation}
    </div>
 
-   <button oncli
+   <button onclick="toggleLike('${h.id}');closeModal()" style="
+     width:100%;
+     margin-top:15px;
+     border:0;
+     background:#ff6b5e;
+     color:white;
+     padding:14px;
+     border-radius:15px;
+     font-weight:700;
+   ">
+     ${liked.includes(h.id)?"❤️ お気に入りから外す":"❤️ お気に入りに入れる"}
+   </button>
+ `);
+}
+
+
+/* =====================================================
+   SALES
+   ===================================================== */
+
+const sales=[
+ {
+   id:"sale-key",
+   hotel:"THE KEY HIGHLAND NASU",
+   title:"那須の森で、温泉・サウナ・食事をまとめて楽しむ",
+   text:"価格が気になる宿だからこそ、セール時は要チェック。"
+ },
+ {
+   id:"sale-okinawa",
+   hotel:"ハレクラニ沖縄",
+   title:"高級リゾートはオフシーズンを狙う",
+   text:"実体験では、オフシーズンでも十分にホテルを楽しめる。"
+ },
+ {
+   id:"sale-shigira",
+   hotel:"シギラベイサイドスイート アラマンダ",
+   title:"梅雨入り前の宮古島が狙い目",
+   text:"海・プール派なら、暑すぎず空いている時期も候補。"
+ }
+];
+
+
+function renderSales(){
+
+ const el=document.getElementById("sales");
+
+ const active=sales.filter(s=>!dismissedSales.includes(s.id));
+
+ if(!active.length){
+   el.innerHTML=`
+     <div style="
+       background:#f5f1ec;
+       padding:20px;
+       border-radius:18px;
+       text-align:center;
+       color:#888;
+       font-size:12px;
+     ">
+       今回スキップしたセールは表示しません。<br>
+       新しいセールが入ると、またここに表示されます。
+     </div>`;
+   return;
+ }
+
+ el.innerHTML=active.map(s=>`
+   <div class="sale">
+     <span class="sale-label">🔥 PICK UP</span>
+     <h4>${s.hotel}</h4>
+     <p>${s.title}<br>${s.text}</p>
+     <div class="sale-buttons">
+       <button class="check" onclick="saleCheck('${s.id}')">気になる</button>
+       <button onclick="dismissSale('${s.id}')">今回は違う</button>
+     </div>
+   </div>
+ `).join("");
+}
+
+
+function saleCheck(id){
+
+ const s=sales.find(x=>x.id===id);
+
+ if(s){
+   toast(`🔥 ${s.hotel}をチェック`);
+ }
+}
+
+
+function dismissSale(id){
+
+ dismissedSales.push(id);
+ localStorage.setItem("babyKidsSales",JSON.stringify(dismissedSales));
+
+ renderSales();
+
+ toast("このセールは今後表示しません");
+}
+
+
+/* =====================================================
+   REVIEWS
+   ===================================================== */
+
+const reviews=[
+ {
+  name:"編集部・家族旅行",
+  hotel:"THE KEY HIGHLAND NASU",
+  score:5,
+  text:"妻が『また行きたい』と言い続けている宿。食事と森のスパが強すぎる。子供が楽しめるのに親もしっかり休める。",
+  tags:["親満足度★★★★★","食事★★★★★","温泉★★★★★"]
+ },
+ {
+  name:"編集部・家族旅行",
+  hotel:"はいむるぶし",
+  score:4.9,
+  text:"遠い。でも到着してしまえば納得。海、プール、水牛、バギー、南十字星。『旅行に来た』という感覚が圧倒的。",
+  tags:["子供満足度★★★★★","リゾート★★★★★","海★★★★★"]
+ },
+ {
+  name:"編集部・家族旅行",
+  hotel:"星野リゾート リゾナーレトマム",
+  score:4.8,
+  text:"3泊したのに全然足りなかった。鹿、牧場、バギー、牛への餌やり、花火。子供の思い出作りにはかなり強い。",
+  tags:["遊び★★★★★","子供★★★★★","北海道"]
+ },
+ {
+  name:"編集部・家族旅行",
+  hotel:"ハレクラニ沖縄",
+  score:4.8,
+  text:"価格は高い。ただスタッフ力が圧倒的。親が『ここに泊まってよかった』と思えるタイプのホテル。",
+  tags:["サービス★★★★★","親満足度★★★★★","オフシーズン"]
+ }
+];
+
+
+function renderReviews(){
+
+ document.getElementById("reviews").innerHTML=reviews.map(r=>`
+   <div class="review">
+     <div class="review-top">
+       <div>
+         <div class="review-name">${r.hotel}</div>
+         <div class="review-date">${r.name}</div>
+       </div>
+       <div class="stars">★ ${r.score}</div>
+     </div>
+     <p>${r.text}</p>
+     <div class="review-score">
+       ${r.tags.map(t=>`<span>${t}</span>`).join("")}
+     </div>
+   </div>
+ `).join("");
+}
+
+
+/* =====================================================
+   MODAL
+   ===================================================== */
+
+function openModal(html){
+ document.getElementById("modalContent").innerHTML=html;
+ document.getElementById("modal").classList.add("show");
+}
+
+function closeModal(e){
+ if(!e || e.target===document.getElementById("modal")){
+   document.getElementById("modal").classList.remove("show");
+ }
+}
+
+
+/* =====================================================
+   TOAST
+   ===================================================== */
+
+let toastTimer;
+
+function toast(message){
+
+ const el=document.getElementById("toast");
+
+ el.textContent=message;
+ el.classList.add("show");
+
+ clearTimeout(toastTimer);
+
+ toastTimer=setTimeout(()=>{
+   el.classList.remove("show");
+ },1800);
+}
+
+
+/* =====================================================
+   RESET
+   ===================================================== */
+
+function resetDeck(){
+ currentHotels=[...hotels];
+ currentIndex=0;
+ renderDeck();
+}
+
+
+/* =====================================================
+   START
+   ===================================================== */
+
+renderDeck();
+renderSales();
+renderReviews();
+
+</script>
+
+</body>
+</html>
