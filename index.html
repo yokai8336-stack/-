@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -1802,4 +1804,2013 @@ const hotels = [
   tags:[
     "森のスパ",
     "サウナ",
-   
+    "食事",
+    "オールインクルーシブ"
+  ],
+
+  badge:"編集部イチオシ",
+
+  images:[
+    "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1200&q=85"
+  ],
+
+  short:
+    "食事・温泉・サウナが強すぎる。親も本気で癒やされる。",
+
+  story:
+    "夕食・朝食の満足度が高く、室内プールもある。森のスパとサウナは大人の満足度が特に高い。",
+
+  highlight:
+    "子供が遊べる一方で、親も温泉やサウナでしっかり休めるバランスが魅力。",
+
+  booking:
+    "https://www.highland-nasu.the-key.jp/"
+},
+
+{
+  id:"tomamu",
+
+  name:"星野リゾート リゾナーレトマム",
+
+  area:"北海道・トマム",
+
+  type:["nature","pool"],
+
+  score:4.8,
+
+  child:4.9,
+  parent:4.8,
+  food:4.7,
+  bath:4.1,
+  play:5.0,
+  cost:3.8,
+
+  budget:4,
+
+  ages:["kid","school"],
+
+  tags:[
+    "雲海",
+    "牧場",
+    "バギー",
+    "鹿"
+  ],
+
+  badge:"子供満足度★★★★★",
+
+  images:[
+    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=85"
+  ],
+
+  short:
+    "広いスイート、ジャグジー、アクティビティ。3泊でも足りない。",
+
+  story:
+    "鹿、牧場、バギー、牛への餌やり、花火など体験が豊富。",
+
+  highlight:
+    "ホテル内だけでも遊びが多く連泊向き。",
+
+  booking:
+    "https://hoshinoresorts.com/ja/hotels/risonaretomamu/"
+},
+
+{
+  id:"yatsugatake",
+
+  name:"グランドメルキュール八ヶ岳",
+
+  area:"山梨・八ヶ岳",
+
+  type:["onsen","nature"],
+
+  score:4.7,
+
+  child:4.9,
+  parent:4.8,
+  food:4.4,
+  bath:4.8,
+  play:5.0,
+  cost:4.6,
+
+  budget:3,
+
+  ages:["baby","kid","school"],
+
+  tags:[
+    "遊び場",
+    "温泉",
+    "ラウンジ",
+    "星空"
+  ],
+
+  badge:"子連れ旅行の本命",
+
+  images:[
+    "https://images.unsplash.com/photo-1601918774946-25832a4be0d6?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=85"
+  ],
+
+  short:
+    "父は子供と遊ぶ、母は温泉。最後は家族でラウンジ。",
+
+  story:
+    "子供を遊ばせながら親もそれぞれ楽しめるバランスが魅力。",
+
+  highlight:
+    "風呂上がりのラウンジや星空など家族の時間を作りやすい。",
+
+  booking:
+    "https://grand-mercure-yatsugatake-resortandspa.jp/"
+}
+
+];
+
+
+/* ============================================================
+   REVIEWS
+============================================================ */
+
+const baseReviews=[
+
+{
+  hotel:"THE KEY HIGHLAND NASU",
+  user:"編集部・家族旅行",
+  score:5,
+
+  text:
+    "妻が『また行きたい』と言い続けている宿。食事と森のスパが強い。子供が楽しめるのに親もしっかり休める。",
+
+  tags:[
+    "親満足度★★★★★",
+    "食事★★★★★",
+    "温泉★★★★★"
+  ]
+},
+
+{
+  hotel:"はいむるぶし",
+  user:"編集部・家族旅行",
+  score:4.9,
+
+  text:
+    "遠い。でも到着してしまえば納得。海、プール、水牛、バギー、南十字星。旅行に来た感覚が圧倒的。",
+
+  tags:[
+    "子供★★★★★",
+    "リゾート★★★★★",
+    "海★★★★★"
+  ]
+},
+
+{
+  hotel:"星野リゾート リゾナーレトマム",
+  user:"編集部・家族旅行",
+  score:4.8,
+
+  text:
+    "3泊したのに全然足りなかった。鹿、牧場、バギー、牛への餌やり、花火。",
+
+  tags:[
+    "遊び★★★★★",
+    "子供★★★★★",
+    "北海道"
+  ]
+},
+
+{
+  hotel:"ハレクラニ沖縄",
+  user:"編集部・家族旅行",
+  score:4.8,
+
+  text:
+    "価格は高い。ただスタッフ力が圧倒的。親が『ここに泊まってよかった』と思えるホテル。",
+
+  tags:[
+    "サービス★★★★★",
+    "親満足度★★★★★",
+    "海"
+  ]
+}
+
+];
+
+
+/* ============================================================
+   STATE
+============================================================ */
+
+let currentHotels=[...hotels];
+
+let currentIndex=0;
+
+let liked=
+  JSON.parse(
+    localStorage.getItem("bk_liked") || "[]"
+  );
+
+let rejected=
+  JSON.parse(
+    localStorage.getItem("bk_rejected") || "[]"
+  );
+
+let dismissedSales=
+  JSON.parse(
+    localStorage.getItem("bk_sales") || "[]"
+  );
+
+let userReviews=
+  JSON.parse(
+    localStorage.getItem("bk_reviews") || "[]"
+  );
+
+let selectedBudget="all";
+
+let selectedAge=null;
+
+
+/* ============================================================
+   STORAGE
+============================================================ */
+
+function save(key,value){
+
+  localStorage.setItem(
+    key,
+    JSON.stringify(value)
+  );
+
+}
+
+
+/* ============================================================
+   DECK
+============================================================ */
+
+function renderDeck(){
+
+  const deck=
+    document.getElementById("deck");
+
+  if(currentIndex >= currentHotels.length){
+
+    deck.innerHTML=`
+
+      <div class="empty">
+
+        <span class="emptyIcon">
+          🎉
+        </span>
+
+        <strong>
+          全部チェックしました！
+        </strong>
+
+        <p>
+          気になるホテルを探すなら
+          検索も使えます。
+        </p>
+
+        <button
+          class="resetButton"
+          onclick="resetDeck()">
+
+          最初から見る
+
+        </button>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  const visible=
+    currentHotels.slice(
+      currentIndex,
+      currentIndex+3
+    );
+
+
+  deck.innerHTML=
+    visible.map(
+      (hotel,index)=>{
+
+        return `
+
+        <article
+          class="card"
+          data-id="${hotel.id}"
+
+          style="
+            z-index:${10-index};
+            transform:
+              scale(${1-index*.035})
+              translateY(${index*9}px);
+          "
+        >
+
+          <div
+            class="cardImage"
+
+            style="
+              background-image:
+              url('${hotel.images[0]}');
+            "
+          >
+
+            <div class="cardShade"></div>
+
+            ${
+              index===0
+              ?
+              `<div class="cardBadge">
+                ${hotel.badge}
+              </div>`
+              :
+              ""
+            }
+
+            <button
+              class="cardHeart"
+
+              onclick="
+                event.stopPropagation();
+                toggleLike('${hotel.id}')
+              "
+            >
+
+              ${
+                liked.includes(hotel.id)
+                ? "❤️"
+                : "♡"
+              }
+
+            </button>
+
+
+            <div class="cardImageText">
+
+              <div class="cardArea">
+                ${hotel.area}
+              </div>
+
+              <div class="cardName">
+                ${hotel.name}
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="cardBody">
+
+            <div class="scoreRow">
+
+              <div>
+
+                <div class="score">
+
+                  ${hotel.score}
+
+                  <small>
+                    /5.0
+                  </small>
+
+                </div>
+
+                <div
+                  style="
+                    font-size:9px;
+                    color:#999;
+                  "
+                >
+                  ベビキッズ体験スコア
+                </div>
+
+              </div>
+
+
+              <button
+                class="detailButton"
+
+                onclick="
+                  openHotel('${hotel.id}')
+                "
+              >
+                詳しく見る
+              </button>
+
+            </div>
+
+
+            <div class="tags">
+
+              ${hotel.tags.map(
+                tag=>`
+                  <span class="tag">
+                    ${tag}
+                  </span>
+                `
+              ).join("")}
+
+            </div>
+
+
+            <div class="story">
+
+              <strong>
+                実体験：
+              </strong>
+
+              ${hotel.short}
+
+            </div>
+
+
+            <div class="metrics">
+
+              <div class="metric">
+                <b>${hotel.child}</b>
+                <span>子供</span>
+              </div>
+
+              <div class="metric">
+                <b>${hotel.parent}</b>
+                <span>親</span>
+              </div>
+
+              <div class="metric">
+                <b>${hotel.play}</b>
+                <span>遊び</span>
+              </div>
+
+              <div class="metric">
+                <b>${hotel.cost}</b>
+                <span>コスパ</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+        `;
+
+      }
+    ).join("");
+
+
+  enableSwipe();
+
+}
+
+
+/* ============================================================
+   SWIPE
+============================================================ */
+
+function enableSwipe(){
+
+  const card=
+    document.querySelector(".card");
+
+  if(!card){
+    return;
+  }
+
+
+  let startX=0;
+  let deltaX=0;
+  let dragging=false;
+
+
+  card.addEventListener(
+    "pointerdown",
+    event=>{
+
+      if(
+        event.target.closest("button")
+      ){
+        return;
+      }
+
+      startX=
+        event.clientX;
+
+      deltaX=0;
+
+      dragging=true;
+
+      card.setPointerCapture(
+        event.pointerId
+      );
+
+    }
+  );
+
+
+  card.addEventListener(
+    "pointermove",
+    event=>{
+
+      if(!dragging){
+        return;
+      }
+
+      deltaX=
+        event.clientX-startX;
+
+      /*
+        縦スクロールを邪魔しないため、
+        横方向に十分動いた時だけ
+        カードを動かす。
+      */
+
+      if(
+        Math.abs(deltaX)>15
+      ){
+
+        card.style.transform=
+          `translateX(${deltaX}px)
+           rotate(${deltaX/22}deg)`;
+
+      }
+
+    }
+  );
+
+
+  card.addEventListener(
+    "pointerup",
+    ()=>{
+
+      if(!dragging){
+        return;
+      }
+
+      dragging=false;
+
+
+      if(
+        Math.abs(deltaX)>100
+      ){
+
+        swipe(
+          deltaX>0
+          ? "yes"
+          : "no"
+        );
+
+      }else{
+
+        card.style.transform=
+          "translateY(0)";
+
+      }
+
+    }
+  );
+
+}
+
+
+/* ============================================================
+   SWIPE ACTION
+============================================================ */
+
+function swipe(type){
+
+  const hotel=
+    currentHotels[currentIndex];
+
+  if(!hotel){
+    return;
+  }
+
+
+  const card=
+    document.querySelector(".card");
+
+
+  if(type==="yes"){
+
+    if(
+      !liked.includes(hotel.id)
+    ){
+
+      liked.push(hotel.id);
+
+    }
+
+    save(
+      "bk_liked",
+      liked
+    );
+
+
+    if(card){
+
+      card.style.transform=
+        "translateX(120%) rotate(18deg)";
+
+      card.style.opacity="0";
+
+    }
+
+    toast(
+      "❤️ お気に入りに追加しました"
+    );
+
+  }
+
+
+  else{
+
+    if(
+      !rejected.includes(hotel.id)
+    ){
+
+      rejected.push(hotel.id);
+
+    }
+
+    save(
+      "bk_rejected",
+      rejected
+    );
+
+
+    if(card){
+
+      card.style.transform=
+        "translateX(-120%) rotate(-18deg)";
+
+      card.style.opacity="0";
+
+    }
+
+    toast(
+      "👎 今回はスキップしました"
+    );
+
+  }
+
+
+  currentIndex++;
+
+  setTimeout(
+    renderDeck,
+    250
+  );
+
+}
+
+
+/* ============================================================
+   CATEGORY FILTER
+============================================================ */
+
+function filterHotels(type,button){
+
+  document
+    .querySelectorAll(".categoryButton")
+    .forEach(
+      b=>b.classList.remove("active")
+    );
+
+
+  button.classList.add("active");
+
+
+  if(type==="all"){
+
+    currentHotels=
+      [...hotels];
+
+  }
+
+  else{
+
+    currentHotels=
+      hotels.filter(
+        hotel=>
+          hotel.type.includes(type)
+      );
+
+  }
+
+
+  applyFilters();
+
+}
+
+
+/* ============================================================
+   BUDGET
+============================================================ */
+
+function setBudget(value,button){
+
+  document
+    .querySelectorAll(".filterChip")
+    .forEach(
+      b=>b.classList.remove("active")
+    );
+
+  button.classList.add("active");
+
+  selectedBudget=value;
+
+  applyFilters();
+
+}
+
+
+/* ============================================================
+   AGE
+============================================================ */
+
+function setAge(value,button){
+
+  document
+    .querySelectorAll(".filterChip")
+    .forEach(
+      b=>b.classList.remove("active")
+    );
+
+  button.classList.add("active");
+
+  selectedAge=value;
+
+  applyFilters();
+
+}
+
+
+/* ============================================================
+   APPLY FILTERS
+============================================================ */
+
+function applyFilters(){
+
+  let result=[...hotels];
+
+
+  if(selectedBudget!=="all"){
+
+    result=
+      result.filter(
+        hotel=>
+          hotel.budget<=selectedBudget
+      );
+
+  }
+
+
+  if(selectedAge){
+
+    result=
+      result.filter(
+        hotel=>
+          hotel.ages.includes(
+            selectedAge
+          )
+      );
+
+  }
+
+
+  currentHotels=result;
+
+  currentIndex=0;
+
+  renderDeck();
+
+}
+
+
+/* ============================================================
+   RESET
+============================================================ */
+
+function resetDeck(){
+
+  currentHotels=
+    [...hotels];
+
+  currentIndex=0;
+
+  selectedBudget="all";
+
+  selectedAge=null;
+
+  renderDeck();
+
+}
+
+
+/* ============================================================
+   FAVORITE
+============================================================ */
+
+function toggleLike(id){
+
+  if(
+    liked.includes(id)
+  ){
+
+    liked=
+      liked.filter(
+        x=>x!==id
+      );
+
+    toast(
+      "お気に入りから外しました"
+    );
+
+  }
+
+  else{
+
+    liked.push(id);
+
+    toast(
+      "❤️ お気に入りに追加しました"
+    );
+
+  }
+
+
+  save(
+    "bk_liked",
+    liked
+  );
+
+
+  renderDeck();
+
+}
+
+
+/* ============================================================
+   SEARCH
+============================================================ */
+
+function searchHotels(){
+
+  const keyword=
+    document
+      .getElementById("searchInput")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const results=
+    document.getElementById(
+      "searchResults"
+    );
+
+
+  if(!keyword){
+
+    results.classList.remove(
+      "show"
+    );
+
+    results.innerHTML="";
+
+    return;
+
+  }
+
+
+  const found=
+    hotels.filter(
+      hotel=>
+
+        hotel.name
+          .toLowerCase()
+          .includes(keyword)
+
+        ||
+
+        hotel.area
+          .toLowerCase()
+          .includes(keyword)
+
+        ||
+
+        hotel.tags.some(
+          tag=>
+            tag.toLowerCase()
+              .includes(keyword)
+        )
+
+    );
+
+
+  results.classList.add(
+    "show"
+  );
+
+
+  if(!found.length){
+
+    results.innerHTML=`
+
+      <div class="empty">
+
+        <span class="emptyIcon">
+          🔎
+        </span>
+
+        見つかりませんでした。
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  results.innerHTML=
+    found.map(
+      hotel=>`
+
+        <div class="resultCard">
+
+          <img
+            src="${hotel.images[0]}"
+            alt="${hotel.name}"
+          >
+
+          <div class="resultInfo">
+
+            <strong>
+              ${hotel.name}
+            </strong>
+
+            <p>
+              ${hotel.area}
+              ｜⭐ ${hotel.score}
+            </p>
+
+            <button
+              onclick="
+                openHotel('${hotel.id}')
+              "
+            >
+              詳しく見る
+            </button>
+
+          </div>
+
+        </div>
+
+      `
+    ).join("");
+
+}
+
+
+/* ============================================================
+   HOTEL DETAIL
+============================================================ */
+
+function openHotel(id){
+
+  const hotel=
+    hotels.find(
+      h=>h.id===id
+    );
+
+  if(!hotel){
+    return;
+  }
+
+
+  openModal(`
+
+    <div class="detailGallery">
+
+      ${hotel.images.map(
+        image=>`
+
+          <img
+            src="${image}"
+            alt="${hotel.name}"
+          >
+
+        `
+      ).join("")}
+
+    </div>
+
+
+    <div
+      style="
+        font-size:10px;
+        color:#999;
+      "
+    >
+      ${hotel.area}
+    </div>
+
+
+    <h2 class="detailTitle">
+      ${hotel.name}
+    </h2>
+
+
+    <div class="bigScore">
+      ${hotel.score}
+
+      <span
+        style="
+          font-size:10px;
+          color:#999;
+        "
+      >
+        /5.0
+      </span>
+
+    </div>
+
+
+    <p
+      style="
+        font-size:12px;
+        line-height:1.8;
+        color:#555;
+      "
+    >
+      ${hotel.story}
+    </p>
+
+
+    <h3>
+      👨‍👩‍👧 ベビキッズ評価
+    </h3>
+
+
+    <div class="ratingGrid">
+
+      ${rating(
+        "子供満足度",
+        hotel.child
+      )}
+
+      ${rating(
+        "親満足度",
+        hotel.parent
+      )}
+
+      ${rating(
+        "食事",
+        hotel.food
+      )}
+
+      ${rating(
+        "風呂・温泉",
+        hotel.bath
+      )}
+
+      ${rating(
+        "遊び",
+        hotel.play
+      )}
+
+      ${rating(
+        "コスパ",
+        hotel.cost
+      )}
+
+    </div>
+
+
+    <h3>
+      📝 ベビキッズメモ
+    </h3>
+
+
+    <p
+      style="
+        font-size:11px;
+        line-height:1.8;
+        color:#555;
+      "
+    >
+      ${hotel.highlight}
+    </p>
+
+
+    <button
+      onclick="
+        toggleLike('${hotel.id}');
+        closeModal();
+      "
+      style="
+        width:100%;
+        border:0;
+        background:#ff665d;
+        color:#fff;
+        padding:13px;
+        border-radius:12px;
+        font-weight:800;
+      "
+    >
+
+      ${
+        liked.includes(hotel.id)
+        ?
+        "❤️ お気に入りから外す"
+        :
+        "❤️ お気に入りに入れる"
+      }
+
+    </button>
+
+
+    <a
+      href="${hotel.booking}"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="bookingButton"
+    >
+
+      🏨 空室を確認・予約する
+
+    </a>
+
+
+    <p
+      style="
+        font-size:8px;
+        color:#aaa;
+        text-align:center;
+        margin-top:8px;
+      "
+    >
+      ※予約は各ホテルの公式サイトへ移動します。
+
+    </p>
+
+  `);
+
+}
+
+
+/* ============================================================
+   RATING
+============================================================ */
+
+function rating(name,value){
+
+  return `
+
+    <div class="ratingBox">
+
+      <b>
+        ${value}
+      </b>
+
+      <span>
+        ${name}
+      </span>
+
+    </div>
+
+  `;
+
+}
+
+
+/* ============================================================
+   SALES
+============================================================ */
+
+const sales=[
+
+{
+  id:"sale1",
+
+  hotel:"THE KEY HIGHLAND NASU",
+
+  title:
+    "那須の森で温泉・サウナ・食事をまとめて楽しむ",
+
+  text:
+    "価格が気になる宿だからこそ、セール時は要チェック。",
+
+},
+
+{
+  id:"sale2",
+
+  hotel:"ハレクラニ沖縄",
+
+  title:
+    "高級リゾートはオフシーズンを狙う",
+
+  text:
+    "ホテル滞在そのものを楽しみたい家族向け。",
+
+},
+
+{
+  id:"sale3",
+
+  hotel:"シギラベイサイドスイート アラマンダ",
+
+  title:
+    "宮古島の海・プール旅行を狙う",
+
+  text:
+    "海とプールを中心に楽しみたい家族に。",
+
+}
+
+];
+
+
+function renderSales(){
+
+  const container=
+    document.getElementById(
+      "sales"
+    );
+
+
+  const visible=
+    sales.filter(
+      sale=>
+        !dismissedSales.includes(
+          sale.id
+        )
+    );
+
+
+  if(!visible.length){
+
+    container.innerHTML=`
+
+      <div class="review">
+
+        <div
+          style="
+            text-align:center;
+            color:#999;
+            padding:15px;
+          "
+        >
+          現在表示できるセール情報はありません。
+
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML=
+    visible.map(
+      sale=>`
+
+        <div class="saleCard">
+
+          <span class="saleBadge">
+            🔥 PICK UP
+          </span>
+
+          <h3>
+            ${sale.hotel}
+          </h3>
+
+          <p>
+            ${sale.title}
+            <br>
+            ${sale.text}
+          </p>
+
+          <div class="saleButtons">
+
+            <button
+              class="primary"
+              onclick="
+                saleCheck('${sale.id}')
+              "
+            >
+              気になる
+            </button>
+
+            <button
+              onclick="
+                dismissSale('${sale.id}')
+              "
+            >
+              今回は違う
+            </button>
+
+          </div>
+
+        </div>
+
+      `
+    ).join("");
+
+}
+
+
+function saleCheck(id){
+
+  const sale=
+    sales.find(
+      s=>s.id===id
+    );
+
+  toast(
+    "🔥 "
+    + sale.hotel
+    + "をチェックしました"
+  );
+
+}
+
+
+function dismissSale(id){
+
+  dismissedSales.push(id);
+
+  save(
+    "bk_sales",
+    dismissedSales
+  );
+
+  renderSales();
+
+  toast(
+    "この情報を非表示にしました"
+  );
+
+}
+
+
+/* ============================================================
+   REVIEWS
+============================================================ */
+
+function allReviews(){
+
+  return [
+    ...userReviews,
+    ...baseReviews
+  ];
+
+}
+
+
+function renderReviews(){
+
+  const container=
+    document.getElementById(
+      "reviews"
+    );
+
+
+  container.innerHTML=
+    allReviews()
+      .map(
+        review=>`
+
+          <div class="review">
+
+            <div class="reviewTop">
+
+              <div>
+
+                <div class="reviewHotel">
+                  ${escapeHTML(review.hotel)}
+                </div>
+
+                <div class="reviewMeta">
+                  ${escapeHTML(review.user || "ユーザー")}
+
+                  ${
+                    review.date
+                    ?
+                    " ・ "
+                    +
+                    review.date
+                    :
+                    ""
+                  }
+
+                </div>
+
+              </div>
+
+              <div class="stars">
+                ★ ${review.score}
+              </div>
+
+            </div>
+
+
+            <p>
+              ${escapeHTML(review.text)}
+            </p>
+
+
+            <div class="reviewTags">
+
+              ${(review.tags || [])
+                .map(
+                  tag=>
+                    `
+                    <span>
+                      ${escapeHTML(tag)}
+                    </span>
+                    `
+                )
+                .join("")
+              }
+
+            </div>
+
+          </div>
+
+        `
+      )
+      .join("");
+
+}
+
+
+/* ============================================================
+   REVIEW FORM
+============================================================ */
+
+function openReviewForm(){
+
+  const options=
+    hotels
+      .map(
+        hotel=>
+          `
+          <option>
+            ${hotel.name}
+          </option>
+          `
+      )
+      .join("");
+
+
+  openModal(`
+
+    <h2>
+      ✍️ 口コミを投稿
+    </h2>
+
+    <p
+      style="
+        font-size:11px;
+        color:#666;
+        line-height:1.7;
+      "
+    >
+      あなたの体験が次の家族の
+      ホテル選びに役立ちます。
+    </p>
+
+
+    <div class="form">
+
+      <label>
+        ホテル
+      </label>
+
+      <select id="reviewHotel">
+
+        ${options}
+
+      </select>
+
+
+      <label>
+        総合評価
+      </label>
+
+      <div
+        id="starInput"
+        class="starInput"
+      >
+
+        ${[1,2,3,4,5]
+          .map(
+            n=>
+              `
+              <span
+                onclick="
+                  setStars(${n})
+                "
+              >
+                ★
+              </span>
+              `
+          )
+          .join("")
+        }
+
+      </div>
+
+
+      <input
+        id="reviewScore"
+        type="hidden"
+        value="5"
+      >
+
+
+      <label>
+        口コミ
+      </label>
+
+      <textarea
+        id="reviewText"
+        placeholder="
+子供の年齢、良かったこと、
+気になったことなどを書いてください。
+        "
+      ></textarea>
+
+
+      <label>
+        タグ
+      </label>
+
+      <input
+        id="reviewTags"
+        placeholder="
+例：子供が喜んだ,食事が良い,温泉が最高
+        "
+      >
+
+
+      <button
+        class="formSubmit"
+        onclick="submitReview()"
+      >
+        口コミを投稿する
+      </button>
+
+    </div>
+
+  `);
+
+
+  setStars(5);
+
+}
+
+
+/* ============================================================
+   STAR
+============================================================ */
+
+function setStars(number){
+
+  document.getElementById(
+    "reviewScore"
+  ).value=number;
+
+
+  document
+    .querySelectorAll(
+      "#starInput span"
+    )
+    .forEach(
+      (star,index)=>{
+
+        star.classList.toggle(
+          "active",
+          index<number
+        );
+
+      }
+    );
+
+}
+
+
+/* ============================================================
+   SUBMIT REVIEW
+============================================================ */
+
+function submitReview(){
+
+  const text=
+    document
+      .getElementById(
+        "reviewText"
+      )
+      .value
+      .trim();
+
+
+  if(text.length<5){
+
+    toast(
+      "口コミを5文字以上入力してください"
+    );
+
+    return;
+
+  }
+
+
+  const hotel=
+    document.getElementById(
+      "reviewHotel"
+    ).value;
+
+
+  const score=
+    Number(
+      document.getElementById(
+        "reviewScore"
+      ).value
+    );
+
+
+  const tags=
+    document
+      .getElementById(
+        "reviewTags"
+      )
+      .value
+      .split(",")
+
+      .map(
+        x=>x.trim()
+      )
+
+      .filter(
+        Boolean
+      );
+
+
+  const review={
+
+    hotel,
+
+    user:"あなた",
+
+    score,
+
+    text,
+
+    tags,
+
+    date:
+      new Date()
+        .toLocaleDateString(
+          "ja-JP"
+        )
+
+  };
+
+
+  userReviews.unshift(
+    review
+  );
+
+
+  save(
+    "bk_reviews",
+    userReviews
+  );
+
+
+  closeModal();
+
+  renderReviews();
+
+
+  toast(
+    "🎉 口コミを投稿しました"
+  );
+
+}
+
+
+/* ============================================================
+   FAVORITES
+============================================================ */
+
+function openFavorites(){
+
+  const favorites=
+    hotels.filter(
+      hotel=>
+        liked.includes(
+          hotel.id
+        )
+    );
+
+
+  if(!favorites.length){
+
+    openModal(`
+
+      <h2>
+        ❤️ お気に入り
+      </h2>
+
+      <div class="empty">
+
+        <span class="emptyIcon">
+          ♡
+        </span>
+
+        まだお気に入りがありません。
+
+      </div>
+
+    `);
+
+    return;
+
+  }
+
+
+  openModal(`
+
+    <h2>
+      ❤️ お気に入り
+    </h2>
+
+    ${favorites.map(
+      hotel=>`
+
+        <div
+          class="profileCard"
+          onclick="
+            openHotel('${hotel.id}')
+          "
+          style="
+            cursor:pointer;
+          "
+        >
+
+          <div class="profileRow">
+
+            <b>
+              ${hotel.name}
+            </b>
+
+            <span class="stars">
+              ★ ${hotel.score}
+            </span>
+
+          </div>
+
+          <p>
+            ${hotel.short}
+          </p>
+
+        </div>
+
+      `
+    ).join("")}
+
+  `);
+
+}
+
+
+/* ============================================================
+   PROFILE
+============================================================ */
+
+function openProfile(){
+
+  openModal(`
+
+    <h2>
+      👤 マイページ
+    </h2>
+
+
+    <div class="profileCard">
+
+      <div class="profileRow">
+
+        <b>
+          あなたの旅行データ
+        </b>
+
+        <span>
+          β版
+        </span>
+
+      </div>
+
+      <p>
+
+        お気に入り：
+        ${liked.length}件
+
+        <br>
+
+        スキップ：
+        ${rejected.length}件
+
+        <br>
+
+        投稿口コミ：
+        ${userReviews.length}件
+
+      </p>
+
+    </div>
+
+
+    <div class="profileCard">
+
+      <b>
+        🧳 ベビキッズからの提案
+      </b>
+
+      <p>
+
+        あなたが❤️したホテルを分析して、
+        今後「あなた向けの宿」を
+        出せるようにしていきます。
+
+      </p>
+
+    </div>
+
+
+    <button
+      class="formSubmit"
+      onclick="openReviewForm()"
+    >
+
+      ✍️ 口コミを投稿する
+
+    </button>
+
+  `);
+
+}
+
+
+/* ============================================================
+   MODAL
+============================================================ */
+
+function openModal(html){
+
+  document.getElementById(
+    "modalBody"
+  ).innerHTML=html;
+
+
+  document.getElementById(
+    "modal"
+  ).classList.add("show");
+
+}
+
+
+function closeModal(event){
+
+  if(
+    !event ||
+    event.target.id==="modal"
+  ){
+
+    document.getElementById(
+      "modal"
+    ).classList.remove(
+      "show"
+    );
+
+  }
+
+}
+
+
+/* ============================================================
+   TOAST
+============================================================ */
+
+function toast(message){
+
+  const element=
+    document.getElementById(
+      "toast"
+    );
+
+
+  element.textContent=
+    message;
+
+
+  element.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+
+  window.toastTimer=
+    setTimeout(
+      ()=>{
+        element.classList.remove(
+          "show"
+        );
+      },
+      1800
+    );
+
+}
+
+
+/* ============================================================
+   ESCAPE HTML
+============================================================ */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(
+      /[&<>"']/g,
+      character=>({
+
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+
+      }[character])
+    );
+
+}
+
+
+/* ============================================================
+   INITIALIZE
+============================================================ */
+
+renderDeck();
+
+renderSales();
+
+renderReviews();
+
+
+/* ============================================================
+   ENTER KEY SEARCH
+============================================================ */
+
+document
+  .getElementById("searchInput")
+  .addEventListener(
+    "keydown",
+    event=>{
+
+      if(
+        event.key==="Enter"
+      ){
+
+        searchHotels();
+
+      }
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
