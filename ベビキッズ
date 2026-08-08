@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>ベビキッズ｜子供も楽しい、親も楽しい。</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ background:#e9e5df;
+ color:#222;
+ font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",Arial,sans-serif;
+}
+
+button,input,textarea,select{
+ font:inherit;
+}
+
+button{
+ cursor:pointer;
+}
+
+#app{
+ width:100%;
+ max-width:480px;
+ min-height:100vh;
+ margin:auto;
+ background:#fff;
+ position:relative;
+}
+
+header{
+ height:68px;
+ padding:10px 17px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ border-bottom:1px solid #eee;
+ position:sticky;
+ top:0;
+ background:rgba(255,255,255,.96);
+ backdrop-filter:blur(12px);
+ z-index:50;
+}
+
+.logo{
+ font-size:24px;
+ font-weight:900;
+ letter-spacing:-1px;
+}
+
+.logo span{
+ color:#ff6868;
+}
+
+.tagline{
+ font-size:9px;
+ color:#888;
+ margin-top:2px;
+}
+
+.headerButton{
+ width:40px;
+ height:40px;
+ border:0;
+ border-radius:50%;
+ background:#f1eee9;
+}
+
+.page{
+ display:none;
+ padding-bottom:90px;
+ min-height:calc(100vh - 68px);
+}
+
+.page.active{
+ display:block;
+}
+
+.hero{
+ padding:25px 20px 10px;
+}
+
+.hero h1{
+ font-size:29px;
+ line-height:1.25;
+ margin:0 0 9px;
+ letter-spacing:-1px;
+}
+
+.hero p{
+ font-size:12px;
+ line-height:1.8;
+ color:#777;
+ margin:0;
+}
+
+.filters{
+ display:flex;
+ gap:7px;
+ overflow-x:auto;
+ padding:10px 17px 15px;
+}
+
+.filters::-webkit-scrollbar{
+ display:none;
+}
+
+.filters button{
+ border:0;
+ background:#f0ede8;
+ padding:10px 14px;
+ border-radius:30px;
+ font-size:11px;
+ font-weight:800;
+ white-space:nowrap;
+}
+
+.filters button.active{
+ background:#222;
+ color:white;
+}
+
+/* CARD */
+
+.deck{
+ height:625px;
+ position:relative;
+ padding:0 15px;
+}
+
+.card{
+ position:absolute;
+ inset:0 15px;
+ background:white;
+ border-radius:25px;
+ overflow:hidden;
+ box-shadow:0 10px 30px rgba(0,0,0,.14);
+ transition:.25s;
+}
+
+.card.back{
+ transform:scale(.95) translateY(12px);
+ opacity:.35;
+ z-index:1;
+}
+
+.card.front{
+ z-index:2;
+}
+
+.cardVisual{
+ height:290px;
+ position:relative;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:90px;
+ overflow:hidden;
+}
+
+.cardVisual.nasu{
+ background:linear-gradient(135deg,#b8d9c0,#dfe9cf);
+}
+
+.cardVisual.okinawa{
+ background:linear-gradient(135deg,#91d8df,#f6d8b7);
+}
+
+.cardVisual.kohama{
+ background:linear-gradient(135deg,#61c6d6,#f4ddaa);
+}
+
+.cardVisual.miyako{
+ background:linear-gradient(135deg,#4dbfd1,#e5d49d);
+}
+
+.cardVisual.tomamu{
+ background:linear-gradient(135deg,#d9e7ef,#c5d5bd);
+}
+
+.cardVisual.yatsugatake{
+ background:linear-gradient(135deg,#b9d6c1,#eee0bd);
+}
+
+.cardBadge{
+ position:absolute;
+ top:14px;
+ left:14px;
+ background:white;
+ padding:8px 12px;
+ border-radius:30px;
+ font-size:11px;
+ font-weight:900;
+}
+
+.cardLocation{
+ position:absolute;
+ bottom:15px;
+ left:17px;
+ color:white;
+ font-size:11px;
+ font-weight:700;
+ text-shadow:0 1px 5px #555;
+}
+
+.cardBody{
+ padding:15px;
+}
+
+.cardBody h2{
+ margin:0;
+ font-size:21px;
+ line-height:1.2;
+}
+
+.sub{
+ font-size:10px;
+ color:#888;
+ margin-top:4px;
+}
+
+.score{
+ margin:11px 0;
+ background:#f6f3ee;
+ padding:11px;
+ border-radius:13px;
+ font-size:12px;
+ font-weight:900;
+}
+
+.stats{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:7px;
+}
+
+.stat{
+ background:#f5f3ef;
+ border-radius:12px;
+ padding:9px;
+ font-size:9px;
+ color:#777;
+}
+
+.stat b{
+ display:block;
+ font-size:12px;
+ color:#222;
+ margin-top:4px;
+}
+
+.quote{
+ margin-top:10px;
+ background:#fff5ed;
+ padding:11px;
+ border-radius:13px;
+ font-size:10px;
+ line-height:1.7;
+}
+
+.tags{
+ margin-top:8px;
+ font-size:9px;
+ color:#555;
+}
+
+.actionArea{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:7px;
+ margin-top:10px;
+}
+
+.actionArea button{
+ border:0;
+ padding:12px;
+ border-radius:13px;
+ font-size:11px;
+ font-weight:900;
+}
+
+.dislike{
+ background:#eee;
+}
+
+.like{
+ background:#ff6868;
+ color:white;
+}
+
+.detailButton{
+ width:100%;
+ margin-top:7px;
+ padding:11px;
+ border:0;
+ border-radius:13px;
+ background:#222;
+ color:white;
+ font-size:11px;
+ font-weight:900;
+}
+
+.swipeText{
+ text-align:center;
+ color:#999;
+ font-size:9px;
+ padding:5px 0 12px;
+}
+
+/* COMMON */
+
+.sectionTitle{
+ padding:22px 20px 10px;
+}
+
+.sectionTitle h1{
+ margin:0;
+ font-size:25px;
+}
+
+.sectionTitle p{
+ margin:6px 0 0;
+ font-size:11px;
+ color:#888;
+}
+
+.searchBox{
+ margin:10px 18px;
+}
+
+.searchBox input{
+ width:100%;
+ border:0;
+ background:#f2efeb;
+ border-radius:14px;
+ padding:14px;
+ outline:none;
+}
+
+.listCard{
+ margin:10px 18px;
+ border-radius:17px;
+ background:#f7f5f1;
+ overflow:hidden;
+}
+
+.listContent{
+ padding:14px;
+}
+
+.listContent h3{
+ margin:0 0 5px;
+ font-size:15px;
+}
+
+.listContent p{
+ font-size:11px;
+ line-height:1.6;
+ color:#777;
+}
+
+.smallButton{
+ border:0;
+ background:#222;
+ color:white;
+ border-radius:10px;
+ padding:8px 11px;
+ font-size:10px;
+ font-weight:800;
+}
+
+.empty{
+ text-align:center;
+ padding:60px 20px;
+ color:#999;
+}
+
+.emptyIcon{
+ font-size:50px;
+}
+
+/* SALE */
+
+.saleCard{
+ margin:12px 18px;
+ padding:17px;
+ background:#222;
+ color:white;
+ border-radius:20px;
+}
+
+.saleCard small{
+ color:#aaa;
+ font-size:9px;
+}
+
+.saleCard h3{
+ margin:6px 0;
+ font-size:17px;
+}
+
+.saleCard p{
+ color:#ccc;
+ font-size:10px;
+ line-height:1.7;
+}
+
+.saleButtons{
+ display:flex;
+ gap:7px;
+}
+
+.saleButtons button{
+ border:0;
+ border-radius:10px;
+ padding:10px 13px;
+ font-size:10px;
+ font-weight:800;
+}
+
+.saleGo{
+ background:#ff6868;
+ color:white;
+}
+
+.saleHide{
+ background:#444;
+ color:#ccc;
+}
+
+/* PROFILE */
+
+.profileBox{
+ margin:15px 18px;
+ background:#f5f2ed;
+ padding:18px;
+ border-radius:20px;
+}
+
+.profileBox h2{
+ margin:0 0 5px;
+ font-size:20px;
+}
+
+.profileItem{
+ background:white;
+ border-radius:14px;
+ padding:13px;
+ margin-top:8px;
+ font-size:11px;
+}
+
+.profileItem b{
+ display:block;
+ font-size:12px;
+ margin-bottom:4px;
+}
+
+/* REVIEWS */
+
+.review{
+ margin:10px 18px;
+ padding:15px;
+ background:#f6f3ee;
+ border-radius:16px;
+}
+
+.review h3{
+ margin:0 0 5px;
+ font-size:14px;
+}
+
+.review p{
+ font-size:11px;
+ line-height:1.7;
+}
+
+.review small{
+ color:#999;
+}
+
+/* MODAL */
+
+.modal{
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.6);
+ z-index:100;
+ display:none;
+ align-items:flex-end;
+}
+
+.modal.show{
+ display:flex;
+}
+
+.modalBox{
+ width:100%;
+ max-width:480px;
+ max-height:92vh;
+ overflow:auto;
+ background:white;
+ border-radius:25px 25px 0 0;
+ padding-bottom:30px;
+}
+
+.modalHead{
+ padding:17px;
+ border-bottom:1px solid #eee;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.modalHead button{
+ width:35px;
+ height:35px;
+ border:0;
+ border-radius:50%;
+ background:#eee;
+}
+
+.modalContent{
+ padding:18px;
+}
+
+.modalContent h2{
+ margin-top:0;
+ font-size:23px;
+}
+
+.modalContent h3{
+ font-size:14px;
+ margin-top:20px;
+}
+
+.modalContent p{
+ font-size:12px;
+ line-height:1.8;
+}
+
+.modalScore{
+ background:#222;
+ color:white;
+ border-radius:14px;
+ padding:15px;
+ font-weight:900;
+}
+
+.modalButton{
+ width:100%;
+ border:0;
+ background:#ff6868;
+ color:white;
+ padding:14px;
+ border-radius:13px;
+ font-weight:900;
+ margin-top:10px;
+}
+
+/* FORM */
+
+.form{
+ padding:18px;
+}
+
+.form label{
+ display:block;
+ margin-top:15px;
+ font-size:11px;
+ font-weight:900;
+}
+
+.form input,
+.form textarea,
+.form select{
+ width:100%;
+ margin-top:6px;
+ border:1px solid #ddd;
+ border-radius:12px;
+ padding:12px;
+ outline:none;
+}
+
+.starButtons{
+ display:flex;
+ gap:5px;
+ margin-top:7px;
+}
+
+.starButtons button{
+ border:0;
+ background:#eee;
+ padding:9px 11px;
+ border-radius:8px;
+}
+
+.starButtons button.selected{
+ background:#222;
+ color:white;
+}
+
+.submitButton{
+ width:100%;
+ border:0;
+ background:#ff6868;
+ color:white;
+ padding:15px;
+ border-radius:14px;
+ font-weight:900;
+ margin-top:20px;
+}
+
+/* NAV */
+
+.bottomNav{
+ position:fixed;
+ bottom:0;
+ left:50%;
+ transform:translateX(-50%);
+ width:min(480px,100%);
+ height:72px;
+ background:rgba(255,255,255,.97);
+ backdrop-filter:blur(12px);
+ border-top:1px solid #eee;
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ z-index:60;
+}
+
+.bottomNav button{
+ border:0;
+ background:transparent;
+ color:#888;
+ font-size:8px;
+}
+
+.bottomNav b{
+ display:block;
+ font-size:21px;
+ color:#222;
+ margin-bottom:2px;
+}
+
+/* TOAST */
+
+#toast{
+ position:fixed;
+ z-index:200;
+ bottom:90px;
+ left:50%;
+ transform:translateX(-50%);
+ background:#222;
+ color:white;
+ padding:11px 18px;
+ border-radius:30px;
+ font-size:11px;
+ display:none;
+ white-space:nowrap;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div id="app">
+
+<header>
+
+<div>
+ <div class="logo">ベビ<span>キッズ</span></div>
+ <div class="tagline">子供も楽しい、親も楽しい。</div>
+</div>
+
+<button class="headerButton" onclick="openProfile()">☺</button>
+
+</header>
+
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<div class="hero">
+
+<h1>
+家族に合うホテル、<br>
+見つけよう。
+</h1>
+
+<p>
+子連れ旅行の実体験から選ぶ。<br>
+「子供も楽しい」と「親も楽しい」を両方見える化。
+</p>
+
+</div>
+
+
+<div class="filters">
+
+<button class="active" onclick="filterAge('all',this)">
+すべて
+</button>
+
+<button onclick="filterAge('0-2',this)">
+👶 0〜2歳
+</button>
+
+<button onclick="filterAge('3-5',this)">
+🧒 3〜5歳
+</button>
+
+<button onclick="filterAge('6-12',this)">
+🎒 6〜12歳
+</button>
+
+</div>
+
+
+<div class="deck" id="deck"></div>
+
+<div class="swipeText">
+← 👎 今回は違う　　👍 気になる →
+</div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<section id="searchPage" class="page">
+
+<div class="sectionTitle">
+
+<h1>🔍 ホテルを探す</h1>
+
+<p>
+ホテル名・地域・特徴から探せます。
+</p>
+
+</div>
+
+<div class="searchBox">
+
+<input
+id="searchInput"
+placeholder="例：那須、沖縄、プール、温泉"
+oninput="searchHotels()">
+
+</div>
+
+<div id="searchResults"></div>
+
+</section>
+
+
+<!-- FAVORITES -->
+
+<section id="favoritePage" class="page">
+
+<div class="sectionTitle">
+
+<h1>❤️ 気になる</h1>
+
+<p>
+👍したホテルを保存しています。
+</p>
+
+</div>
+
+<div id="favoriteResults"></div>
+
+</section>
+
+
+<!-- SALE -->
+
+<section id="salePage" class="page">
+
+<div class="sectionTitle">
+
+<h1>🔥 セール</h1>
+
+<p>
+家族旅行のお得情報をまとめます。
+</p>
+
+</div>
+
+<div id="saleResults"></div>
+
+</section>
+
+
+<!-- REVIEWS -->
+
+<section id="reviewPage" class="page">
+
+<div class="sectionTitle">
+
+<h1>📝 宿泊口コミ</h1>
+
+<p>
+実際に泊まった家族のリアルな声。
+</p>
+
+</div>
+
+<div id="reviewResults"></div>
+
+</section>
+
+
+<!-- PROFILE -->
+
+<section id="profilePage" class="page">
+
+<div class="sectionTitle">
+
+<h1>☺ マイベビキッズ</h1>
+
+<p>
+あなたの家族に合うホテルを学習します。
+</p>
+
+</div>
+
+<div class="profileBox">
+
+<h2 id="familyType">
+まだ分析データがありません
+</h2>
+
+<div class="profileItem">
+
+<b>👍 気になる</b>
+
+<span id="likeCount">0件</span>
+
+</div>
+
+<div class="profileItem">
+
+<b>👎 今回は違う</b>
+
+<span id="dislikeCount">0件</span>
+
+</div>
+
+<div class="profileItem">
+
+<b>❤️ あなたの旅行タイプ</b>
+
+<span id="familyDescription">
+ホテルを👍していくと分析されます。
+</span>
+
+</div>
+
+</div>
+
+<div class="sectionTitle">
+
+<h2>あなたの口コミ</h2>
+
+</div>
+
+<div id="myReviews"></div>
+
+</section>
+
+
+<nav class="bottomNav">
+
+<button onclick="openPage('home')">
+<b>⌂</b>
+探す
+</button>
+
+<button onclick="openPage('searchPage')">
+<b>⌕</b>
+検索
+</button>
+
+<button onclick="openPage('favoritePage');renderFavorites()">
+<b>♡</b>
+気になる
+</button>
+
+<button onclick="openPage('salePage');renderSales()">
+<b>🔥</b>
+セール
+</button>
+
+<button onclick="openProfile()">
+<b>☺</b>
+マイページ
+</button>
+
+</nav>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modalBox">
+
+<div class="modalHead">
+
+<b id="modalTitle">ホテル詳細</b>
+
+<button onclick="closeModal()">×</button>
+
+</div>
+
+<div class="modalContent" id="modalContent"></div>
+
+</div>
+
+</div>
+
+
+<div id="toast"></div>
+
+
+<script>
+
+/* =========================
+ HOTEL DATA
+========================= */
+
+const hotels=[
+
+{
+ id:1,
+ name:"THE KEY HIGHLAND NASU",
+ area:"那須高原",
+ age:["3-5","6-12"],
+ category:"温泉・自然・食事",
+ emoji:"🌲",
+ visual:"nasu",
+ score:96,
+ kids:5,
+ parents:5,
+ food:5,
+ bath:5,
+ stay:"1泊でも満足",
+ season:"通年",
+ tags:"🔥 森のスパ　🍷 ワイン　🏊 室内プール",
+ review:"夕食朝食のレベルが高すぎる。ワインに合うものも多数。周りも子連れが多いけど、大人専用のような落ち着いたホテル。妻ももう一度行きたいと事あるごとに言ってくる。",
+ detail:"室内プールがあるので小さい子供連れもOK。森のスパは唯一無二。最高のサウナと森の中での露天風呂。周辺も那須なので牧場や動物系など行くところがたくさん。"
+},
+
+{
+ id:2,
+ name:"ハレクラニ沖縄",
+ area:"沖縄",
+ age:["0-2","3-5","6-12"],
+ category:"高級リゾート",
+ emoji:"🌴",
+ visual:"okinawa",
+ score:94,
+ kids:5,
+ parents:5,
+ food:5,
+ bath:4,
+ stay:"2泊以上がおすすめ",
+ season:"オフシーズンも◎",
+ tags:"🌴 リゾート　🎵 ライブ　🥞 パンケーキ　🏊 プール",
+ review:"スタッフ力がディズニー並み。夕食のハウス ウィズアウト ア キーのライブが雰囲気最高。金額は高い。",
+ detail:"オフシーズンでも十分楽しめるので、庶民はオフシーズン狙いがおすすめ。朝食のパンケーキは子連れでも落ち着いて座れる。"
+},
+
+{
+ id:3,
+ name:"はいむるぶし",
+ area:"小浜島",
+ age:["0-2","3-5","6-12"],
+ category:"海・自然・リゾート",
+ emoji:"🌊",
+ visual:"kohama",
+ score:95,
+ kids:5,
+ parents:5,
+ food:5,
+ bath:4,
+ stay:"2泊以上推奨",
+ season:"海を楽しめる時期",
+ tags:"🌊 海　🐂 水牛　🌌 星空　🏊 プール",
+ review:"遠い。子連れだと確かに行くまで大変なので2泊以上推奨。でも言ってしまえば最高。",
+ detail:"綺麗な海に子連れも楽しめるプール。バギーカートでの移動、水牛、昆虫博物館、南十字星。ご飯も最高。リゾート感は唯一無二。"
+},
+
+{
+ id:4,
+ name:"シギラベイサイドスイート アラマンダ",
+ area:"宮古島",
+ age:["0-2","3-5"],
+ category:"海・プール・南国",
+ emoji:"🐢",
+ visual:"miyako",
+ score:94,
+ kids:5,
+ parents:5,
+ food:4,
+ bath:4,
+ stay:"2〜3泊",
+ season:"4〜5月がおすすめ",
+ tags:"🌊 海　🐢 ウミガメ　🏊 プール　🍈 メロンパフェ",
+ review:"3歳くらいまでならアラマンダ。ホテル内のプールが南国感ナンバーワン。目の前のプールサイドでビールやメロンパフェ。",
+ detail:"ウミガメに餌やり。子供はウミガメのぬいぐるみを欲しがる。宮古島の海は必須。海とプール好きなら絶対ここ。"
+},
+
+{
+ id:5,
+ name:"星野リゾート リゾナーレトマム",
+ area:"北海道・トマム",
+ age:["0-2","3-5","6-12"],
+ category:"自然・アクティビティ",
+ emoji:"🦌",
+ visual:"tomamu",
+ score:97,
+ kids:5,
+ parents:5,
+ food:5,
+ bath:4,
+ stay:"3泊以上がおすすめ",
+ season:"夏／冬はスキー世代",
+ tags:"🦌 鹿　🐄 牧場　🏎 バギー　☁️ 雲海",
+ review:"6歳未満なら絶対リゾナーレ。通路に普通に鹿がいて子供大興奮。3泊したけど全然足りない。",
+ detail:"部屋がスイートで広くジャグジー。雲海ワゴンに並ばなくて済む。牧場、牛への餌やり、子牛へのミルクなどアクティビティ豊富。ホタルストリートでは様々な食事が楽しめ、花火も毎晩見た。"
+},
+
+{
+ id:6,
+ name:"グランドメルキュール八ヶ岳",
+ area:"八ヶ岳",
+ age:["0-2","3-5","6-12"],
+ category:"遊び場・温泉・自然",
+ emoji:"🌌",
+ visual:"yatsugatake",
+ score:95,
+ kids:5,
+ parents:5,
+ food:4,
+ bath:5,
+ stay:"1〜2泊",
+ season:"通年",
+ tags:"🧸 遊び場　♨️ 温泉　🍹 ラウンジ　🌌 星空",
+ review:"父親が子供を遊ばせながら、母親は温泉へ。一緒にラウンジでお酒やジュース。近くに子供が遊べるところいっぱい。",
+ detail:"牧場、動物園など子供が遊べるところが多数。風呂上がりの甘酒も一緒に楽しめて、星空が格別。"
+}
+
+];
+
+
+/* =========================
+ STATE
+========================= */
+
+let liked=JSON.parse(localStorage.getItem("bk_liked")||"[]");
+
+let disliked=JSON.parse(localStorage.getItem("bk_disliked")||"[]");
+
+let reviews=JSON.parse(localStorage.getItem("bk_reviews")||"[]");
+
+let hiddenSales=JSON.parse(localStorage.getItem("bk_hiddenSales")||"[]");
+
+let currentIndex=0;
+
+let ageFilter="all";
+
+let selectedHotel=null;
+
+let reviewKids=0;
+
+let reviewParents=0;
+
+
+/* =========================
+ UTIL
+========================= */
+
+function save(){
+
+ localStorage.setItem("bk_liked",JSON.stringify(liked));
+
+ localStorage.setItem("bk_disliked",JSON.stringify(disliked));
+
+ localStorage.setItem("bk_reviews",JSON.stringify(reviews));
+
+ localStorage.setItem("bk_hiddenSales",JSON.stringify(hiddenSales));
+
+}
+
+
+function stars(n){
+
+ return "★".repeat(n)+"☆".repeat(5-n);
+
+}
+
+
+function toast(text){
+
+ const el=document.getElementById("toast");
+
+ el.innerText=text;
+
+ el.style.display="block";
+
+ setTimeout(()=>{
+   el.style.display="none";
+ },1600);
+
+}
+
+
+function openPage(id){
+
+ document.querySelectorAll(".page")
+ .forEach(p=>p.classList.remove("active"));
+
+ document.getElementById(id)
+ .classList.add("active");
+
+ window.scrollTo(0,0);
+
+}
+
+
+function openProfile(){
+
+ openPage("profilePage");
+
+ renderProfile();
+
+}
+
+
+/* =========================
+ FILTER
+========================= */
+
+function filterAge(age,button){
+
+ ageFilter=age;
+
+ document.querySelectorAll(".filters button")
+ .forEach(b=>b.classList.remove("active"));
+
+ button.classList.add("active");
+
+ currentIndex=0;
+
+ renderDeck();
+
+}
+
+
+/* =========================
+ HOTEL LIST
+========================= */
+
+function availableHotels(){
+
+ return hotels.filter(h=>{
+
+   if(disliked.includes(h.id)) return false;
+
+   if(ageFilter==="all") return true;
+
+   return h.age.includes(ageFilter);
+
+ });
+
+}
+
+
+/* =========================
+ CARD
+========================= */
+
+function renderDeck(){
+
+ const deck=document.getElementById("deck");
+
+ const list=availableHotels();
+
+ if(!list.length){
+
+   deck.innerHTML=`
+   <div class="empty">
+   <div class="emptyIcon">🎉</div>
+   <h2>全部チェックしました</h2>
+   <p>年齢条件を変えて探してみよう。</p>
+   </div>`;
+
+   return;
+
+ }
+
+ if(currentIndex>=list.length)
+ currentIndex=0;
+
+ const h=list[currentIndex];
+
+ const next=list[(currentIndex+1)%list.length];
+
+ deck.innerHTML=`
+
+ <div class="card back">
+
+   <div class="cardVisual ${next.visual}">
+     ${next.emoji}
+   </div>
+
+ </div>
+
+
+ <div class="card front" id="swipeCard">
+
+   <div class="cardVisual ${h.visual}">
+
+     <div class="cardBadge">
+       ⭐ ${h.score}点
+     </div>
+
+     <div>
+       ${h.emoji}
+     </div>
+
+     <div class="cardLocation">
+       📍 ${h.area}
+     </div>
+
+   </div>
+
+
+   <div class="cardBody">
+
+     <h2>${h.name}</h2>
+
+     <div class="sub">
+       ベビキッズ編集部・実体験
+     </div>
+
+
+     <div class="score">
+       ベビキッズ総合スコア　${h.score} / 100
+     </div>
+
+
+     <div class="stats">
+
+       <div class="stat">
+         👶 子供満足
+         <b>${stars(h.kids)}</b>
+       </div>
+
+       <div class="stat">
+         ❤️ 親満足
+         <b>${stars(h.parents)}</b>
+       </div>
+
+       <div class="stat">
+         🍴 食事
+         <b>${stars(h.food)}</b>
+       </div>
+
+       <div class="stat">
+         ♨️ 風呂
+         <b>${stars(h.bath)}</b>
+       </div>
+
+     </div>
+
+
+     <div class="quote">
+       “ ${h.review} ”
+     </div>
+
+
+     <div class="tags">
+       ${h.tags}
+     </div>
+
+
+     <div class="actionArea">
+
+       <button class="dislike"
+       onclick="dislikeHotel(${h.id})">
+       👎 今回は違う
+       </button>
+
+       <button class="like"
+       onclick="likeHotel(${h.id})">
+       👍 気になる
+       </button>
+
+     </div>
+
+
+     <button class="detailButton"
+     onclick="openHotel(${h.id})">
+     詳しく見る →
+     </button>
+
+   </div>
+
+ </div>
+ `;
+
+
+ enableSwipe(h.id);
+
+}
+
+
+/* =========================
+ SWIPE
+========================= */
+
+function enableSwipe(id){
+
+ const card=document.getElementById("swipeCard");
+
+ if(!card)return;
+
+ let startX=0;
+
+ let currentX=0;
+
+ let dragging=false;
+
+
+ card.addEventListener("touchstart",e=>{
+
+   startX=e.touches[0].clientX;
+
+   dragging=true;
+
+ });
+
+
+ card.addEventListener("touchmove",e=>{
+
+   if(!dragging)return;
+
+   currentX=e.touches[0].clientX-startX;
+
+   card.style.transform=
+   `translateX(${currentX}px) rotate(${currentX/15}deg)`;
+
+ });
+
+
+ card.addEventListener("touchend",()=>{
+
+   dragging=false;
+
+   if(currentX>100){
+
+     likeHotel(id);
+
+   }else if(currentX<-100){
+
+     dislikeHotel(id);
+
+   }else{
+
+     card.style.transform="";
+
+   }
+
+ });
+
+}
+
+
+/* =========================
+ LIKE
+========================= */
+
+function likeHotel(id){
+
+ if(!liked.includes(id)){
+
+   liked.push(id);
+
+   save();
+
+   toast("❤️ 気になるホテルに追加");
+
+ }else{
+
+   toast("すでに気になるホテルです");
+
+ }
+
+ nextCard();
+
+}
+
+
+/* =========================
+ DISLIKE
+========================= */
+
+function dislikeHotel(id){
+
+ if(!disliked.includes(id)){
+
+   disliked.push(id);
+
+   save();
+
+ }
+
+ toast("👎 今回のおすすめから外しました");
+
+ nextCard();
+
+}
+
+
+function nextCard(){
+
+ currentIndex++;
+
+ renderDeck();
+
+}
+
+
+/* =========================
+ DETAIL
+========================= */
+
+function openHotel(id){
+
+ selectedHotel=id;
+
+ const h=hotels.find(x=>x.id===id);
+
+ document.getElementById("modalTitle").innerText=h.name;
+
+ document.getElementById("modalContent").innerHTML=`
+
+ <div class="modalScore">
+ ⭐ ベビキッズ ${h.score}点
+ </div>
+
+
+ <p>
+ 📍 ${h.area}<br>
+ 🏷 ${h.category}
+ </p>
+
+
+ <h3>👶 子供も楽しい</h3>
+
+ <p>${stars(h.kids)}</p>
+
+
+ <h3>❤️ 親も楽しい</h3>
+
+ <p>${stars(h.parents)}</p>
+
+
+ <h3>🍴 食事</h3>
+
+ <p>${stars(h.food)}</p>
+
+
+ <h3>♨️ 風呂・サウナ</h3>
+
+ <p>${stars(h.bath)}</p>
+
+
+ <h3>📝 ベビキッズ編集部の実体験</h3>
+
+ <p>${h.review}</p>
+
+
+ <h3>📌 編集部メモ</h3>
+
+ <p>${h.detail}</p>
+
+
+ <h3>🛏 おすすめ泊数</h3>
+
+ <p>${h.stay}</p>
+
+
+ <h3>📅 おすすめ時期</h3>
+
+ <p>${h.season}</p>
+
+
+ <h3>🏷 おすすめポイント</h3>
+
+ <p>${h.tags}</p>
+
+
+ <button class="modalButton"
+ onclick="openReviewForm(${h.id})">
+ 📝 実際に泊まったので口コミを書く
+ </button>
+
+
+ <h3>👨‍👩‍👧 宿泊者口コミ</h3>
+
+ <div id="hotelReviewList"></div>
+
+ `;
+
+
+ renderHotelReviews(id);
+
+ document.getElementById("modal")
+ .classList.add("show");
+
+}
+
+
+function closeModal(){
+
+ document.getElementById("modal")
+ .classList.remove("show");
+
+}
+
+
+/* =========================
+ HOTEL REVIEWS
+========================= */
+
+function renderHotelReviews(id){
+
+ const box=document.getElementById("hotelReviewList");
+
+ cons
