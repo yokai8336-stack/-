@@ -2,1257 +2,1804 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#fffaf5">
+
 <title>ベビキッズ｜子供も楽しい、親も楽しい。</title>
 
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
-  background:#f5f3ef;
-  color:#252525;
-  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
-}
-button{font:inherit}
-.app{
-  width:100%;
-  max-width:560px;
-  margin:auto;
-  min-height:100vh;
-  background:#fffaf5;
-  overflow:hidden;
+
+*{
+  box-sizing:border-box;
 }
 
-/* HEADER */
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:#eeeae5;
+  color:#242424;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Noto Sans JP",
+    "Hiragino Kaku Gothic ProN",
+    sans-serif;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+}
+
+/* =========================
+   APP
+========================= */
+
+.app{
+  width:100%;
+  max-width:620px;
+  min-height:100vh;
+  margin:auto;
+  background:#fffaf5;
+  box-shadow:0 0 50px rgba(0,0,0,.08);
+}
+
+/* =========================
+   HEADER
+========================= */
+
 .header{
   position:sticky;
   top:0;
   z-index:50;
+
   background:rgba(255,250,245,.94);
-  backdrop-filter:blur(16px);
-  padding:14px 18px 10px;
-  border-bottom:1px solid #eee7df;
+  backdrop-filter:blur(15px);
+
+  padding:
+    13px
+    16px
+    8px;
+
+  border-bottom:1px solid #eee5dc;
 }
-.logo{
+
+.headerTop{
   display:flex;
   align-items:center;
   justify-content:space-between;
 }
-.logo h1{
-  margin:0;
-  font-size:23px;
-  letter-spacing:-1px;
-}
-.logo h1 span{color:#ff6b5e}
-.tagline{
-  margin:3px 0 0;
-  color:#777;
-  font-size:11px;
-}
-.header-actions{
-  display:flex;
-  gap:8px;
-}
-.icon-btn{
-  width:40px;
-  height:40px;
-  border:0;
-  border-radius:50%;
-  background:#fff;
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
 
-/* NAV */
-.nav{
-  display:flex;
-  gap:6px;
-  padding:9px 14px;
-  overflow-x:auto;
-}
-.nav button{
-  flex:none;
-  border:1px solid #e7ded5;
-  background:white;
-  padding:8px 13px;
-  border-radius:20px;
-  font-size:12px;
-}
-.nav button.active{
-  background:#252525;
-  color:white;
-  border-color:#252525;
-}
-
-/* HERO */
-.hero{
-  padding:18px 18px 4px;
-}
-.hero h2{
-  margin:0;
-  font-size:28px;
-  line-height:1.25;
+.logo{
+  font-size:24px;
+  font-weight:900;
   letter-spacing:-1.5px;
 }
-.hero h2 span{color:#ff6b5e}
+
+.logo span{
+  color:#ff665d;
+}
+
+.logoSub{
+  font-size:10px;
+  color:#999;
+  margin-top:2px;
+}
+
+.headerButtons{
+  display:flex;
+  gap:7px;
+}
+
+.roundButton{
+  width:40px;
+  height:40px;
+
+  border:0;
+  border-radius:50%;
+
+  background:#fff;
+
+  box-shadow:
+    0 4px 15px rgba(0,0,0,.08);
+}
+
+/* =========================
+   CATEGORY NAV
+========================= */
+
+.categoryNav{
+  display:flex;
+  gap:7px;
+
+  overflow-x:auto;
+
+  padding:
+    9px
+    13px
+    4px;
+
+  scrollbar-width:none;
+}
+
+.categoryNav::-webkit-scrollbar{
+  display:none;
+}
+
+.categoryButton{
+  white-space:nowrap;
+
+  border:1px solid #e6ddd4;
+
+  background:#fff;
+
+  padding:
+    8px
+    13px;
+
+  border-radius:20px;
+
+  font-size:11px;
+}
+
+.categoryButton.active{
+  background:#242424;
+  color:#fff;
+  border-color:#242424;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  padding:
+    19px
+    17px
+    10px;
+}
+
+.hero h1{
+  margin:0;
+
+  font-size:28px;
+  line-height:1.25;
+
+  letter-spacing:-1.5px;
+}
+
+.hero h1 span{
+  color:#ff665d;
+}
+
 .hero p{
-  margin:8px 0 0;
+  margin:
+    8px
+    0
+    0;
+
   color:#777;
-  font-size:13px;
+
+  font-size:12px;
   line-height:1.7;
 }
 
-/* CARD AREA */
-.deck{
-  position:relative;
-  height:650px;
-  margin:12px 14px 0;
-}
-.card{
-  position:absolute;
-  inset:0;
-  background:#fff;
-  border-radius:26px;
-  overflow:hidden;
-  box-shadow:0 12px 40px rgba(42,31,22,.15);
-  transition:transform .35s ease,opacity .35s ease;
-  touch-action:none;
-}
-.card-image{
-  height:285px;
-  position:relative;
-  background:
-    linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.65)),
-    linear-gradient(135deg,#78a88a,#d9c89d);
+/* =========================
+   SEARCH
+========================= */
+
+.searchBox{
+  margin:
+    5px
+    16px
+    13px;
+
   display:flex;
-  align-items:flex-end;
-  padding:18px;
-  color:#fff;
-}
-.card[data-id="halekulani"] .card-image{
-  background:
-    linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.7)),
-    linear-gradient(135deg,#6eb5c7,#f3d8b0);
-}
-.card[data-id="haimuru"] .card-image{
-  background:
-    linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.7)),
-    linear-gradient(135deg,#36a9c1,#75d1ad);
-}
-.card[data-id="shigira"] .card-image{
-  background:
-    linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.7)),
-    linear-gradient(135deg,#27a8c7,#f0c56c);
-}
-.card[data-id="key"] .card-image{
-  background:
-    linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.7)),
-    linear-gradient(135deg,#315b45,#b5c58b);
-}
-.card[data-id="tomamu"] .card-image{
-  background:
-    linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.7)),
-    linear-gradient(135deg,#5577a5,#f3d69c);
-}
-.card[data-id="yatsugatake"] .card-image{
-  background:
-    linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.7)),
-    linear-gradient(135deg,#6b8c65,#e0c38c);
+  gap:7px;
 }
 
-.badge{
-  position:absolute;
-  top:16px;
-  left:16px;
-  background:#ff6b5e;
-  color:#fff;
-  border-radius:20px;
-  padding:7px 11px;
-  font-weight:700;
-  font-size:11px;
+.searchInput{
+  flex:1;
+
+  min-width:0;
+
+  border:1px solid #e4ddd6;
+
+  background:#fff;
+
+  border-radius:13px;
+
+  padding:
+    11px
+    13px;
+
+  outline:none;
+
+  font-size:12px;
 }
-.favorite{
-  position:absolute;
-  top:14px;
-  right:14px;
-  width:42px;
-  height:42px;
+
+.searchInput:focus{
+  border-color:#ff665d;
+}
+
+.searchButton{
+  width:46px;
+
   border:0;
-  border-radius:50%;
-  background:rgba(255,255,255,.9);
-  font-size:20px;
+
+  border-radius:13px;
+
+  background:#242424;
+
+  color:#fff;
 }
-.place{
-  font-size:11px;
-  opacity:.9;
+
+/* =========================
+   FILTER
+========================= */
+
+.filterArea{
+  padding:
+    0
+    16px
+    12px;
 }
-.card-title{
-  margin:3px 0 0;
-  font-size:23px;
-  line-height:1.2;
+
+.filterScroll{
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+
+.filterScroll::-webkit-scrollbar{
+  display:none;
+}
+
+.filterChip{
+  white-space:nowrap;
+
+  border:1px solid #e7dfd7;
+
+  background:#fff;
+
+  border-radius:20px;
+
+  padding:
+    7px
+    10px;
+
+  font-size:10px;
+}
+
+.filterChip.active{
+  background:#ffe6e2;
+  border-color:#ffaaa2;
+  color:#c8473f;
+}
+
+/* =========================
+   SWIPE DECK
+========================= */
+
+.deckWrap{
+  margin:
+    0
+    13px;
+}
+
+.deck{
+  position:relative;
+
+  height:600px;
+
+  overflow:visible;
+}
+
+.card{
+  position:absolute;
+
+  inset:0;
+
+  overflow:hidden;
+
+  background:#fff;
+
+  border-radius:25px;
+
+  box-shadow:
+    0 15px 45px rgba(45,32,20,.15);
+
+  transition:
+    transform .25s ease,
+    opacity .25s ease;
+
+  user-select:none;
+
+  /*
+    ここが重要。
+    縦方向はブラウザのスクロールを優先。
+  */
+  touch-action:pan-y;
+}
+
+.cardImage{
+  height:270px;
+
+  position:relative;
+
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+
+.cardShade{
+  position:absolute;
+  inset:35% 0 0;
+
+  background:
+    linear-gradient(
+      transparent,
+      rgba(0,0,0,.78)
+    );
+}
+
+.cardBadge{
+  position:absolute;
+
+  top:14px;
+  left:14px;
+
+  z-index:3;
+
+  background:#ff665d;
+  color:#fff;
+
+  padding:
+    6px
+    10px;
+
+  border-radius:20px;
+
+  font-size:9px;
   font-weight:800;
 }
-.card-body{
-  padding:15px 17px;
+
+.cardHeart{
+  position:absolute;
+
+  z-index:4;
+
+  right:13px;
+  top:13px;
+
+  width:43px;
+  height:43px;
+
+  border:0;
+  border-radius:50%;
+
+  background:rgba(255,255,255,.94);
+
+  font-size:19px;
 }
-.score-row{
+
+.cardImageText{
+  position:absolute;
+
+  z-index:3;
+
+  left:17px;
+  right:17px;
+  bottom:15px;
+
+  color:#fff;
+}
+
+.cardArea{
+  font-size:10px;
+}
+
+.cardName{
+  font-size:22px;
+  font-weight:900;
+
+  line-height:1.25;
+}
+
+/* =========================
+   CARD BODY
+========================= */
+
+.cardBody{
+  padding:
+    13px
+    16px;
+}
+
+.scoreRow{
   display:flex;
-  align-items:center;
+
   justify-content:space-between;
+  align-items:center;
 }
+
 .score{
   font-size:28px;
   font-weight:900;
 }
+
 .score small{
-  font-size:11px;
-  color:#999;
+  color:#aaa;
+  font-size:10px;
   font-weight:500;
 }
+
+.detailButton{
+  border:0;
+
+  background:#f4eee8;
+
+  border-radius:12px;
+
+  padding:
+    9px
+    11px;
+
+  font-size:10px;
+}
+
 .tags{
   display:flex;
-  gap:6px;
+
+  gap:5px;
+
   overflow:hidden;
-  margin:10px 0;
+
+  margin:
+    8px
+    0;
 }
+
 .tag{
   white-space:nowrap;
-  background:#f6f1eb;
-  padding:6px 9px;
-  border-radius:10px;
-  font-size:10px;
-}
-.experience{
-  font-size:13px;
-  line-height:1.7;
-  color:#555;
-  margin:8px 0;
-}
-.experience strong{color:#222}
-.mini-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:6px;
-}
-.mini{
-  background:#faf7f3;
-  border-radius:10px;
-  padding:7px 5px;
-  text-align:center;
-}
-.mini b{
-  display:block;
-  font-size:15px;
-}
-.mini span{
-  display:block;
-  color:#999;
+
+  background:#f7f2ec;
+
+  padding:
+    5px
+    8px;
+
+  border-radius:8px;
+
   font-size:9px;
 }
 
-/* SWIPE BUTTONS */
-.swipe-actions{
+.story{
+  font-size:11px;
+
+  line-height:1.65;
+
+  color:#555;
+
+  margin:
+    7px
+    0;
+}
+
+.story strong{
+  color:#222;
+}
+
+.metrics{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:5px;
+}
+
+.metric{
+  background:#faf7f3;
+
+  border-radius:10px;
+
+  padding:7px 3px;
+
+  text-align:center;
+}
+
+.metric b{
+  display:block;
+
+  font-size:14px;
+}
+
+.metric span{
+  font-size:8px;
+  color:#999;
+}
+
+/* =========================
+   SWIPE BUTTONS
+========================= */
+
+.swipeActions{
   display:flex;
+
   justify-content:center;
+
   gap:18px;
-  margin:16px 0 24px;
+
+  margin:
+    16px
+    0
+    14px;
 }
-.swipe-btn{
+
+.swipeButton{
+  width:60px;
+  height:60px;
+
   border:0;
+
   border-radius:50%;
-  width:62px;
-  height:62px;
+
   background:#fff;
-  box-shadow:0 7px 22px rgba(0,0,0,.12);
-  font-size:25px;
+
+  box-shadow:
+    0 7px 25px rgba(0,0,0,.12);
+
+  font-size:23px;
 }
-.swipe-btn.no{
+
+.swipeNo{
   color:#777;
 }
-.swipe-btn.yes{
-  color:#ff5c68;
+
+.swipeYes{
+  color:#ff5d68;
 }
 
-/* SECTION */
-.section{
-  padding:20px 18px;
+.swipeHint{
+  text-align:center;
+
+  color:#aaa;
+
+  font-size:9px;
+
+  margin-bottom:20px;
 }
-.section-head{
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+  padding:
+    20px
+    16px;
+}
+
+.sectionHeader{
   display:flex;
-  justify-content:space-between;
+
   align-items:end;
+
+  justify-content:space-between;
+
   margin-bottom:12px;
 }
-.section h3{
+
+.sectionHeader h2{
   margin:0;
-  font-size:20px;
+
+  font-size:19px;
 }
-.section-head span{
-  color:#999;
-  font-size:11px;
-}
-.sale{
-  background:#252525;
-  color:white;
-  border-radius:22px;
-  padding:18px;
-  margin-bottom:10px;
-  position:relative;
-  overflow:hidden;
-}
-.sale:after{
-  content:"";
-  position:absolute;
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:#ff6b5e;
-  opacity:.18;
-  right:-35px;
-  top:-35px;
-}
-.sale .sale-label{
-  display:inline-block;
-  background:#ff6b5e;
-  padding:5px 8px;
-  border-radius:7px;
+
+.sectionHeader span{
   font-size:9px;
+  color:#999;
+}
+
+/* =========================
+   SALE
+========================= */
+
+.saleCard{
+  background:#242424;
+
+  color:#fff;
+
+  border-radius:20px;
+
+  padding:16px;
+
+  margin-bottom:10px;
+}
+
+.saleBadge{
+  display:inline-block;
+
+  background:#ff665d;
+
+  padding:
+    5px
+    8px;
+
+  border-radius:7px;
+
+  font-size:8px;
+
   font-weight:800;
 }
-.sale h4{
-  margin:9px 0 4px;
-  font-size:17px;
+
+.saleCard h3{
+  font-size:16px;
+
+  margin:
+    8px
+    0
+    4px;
 }
-.sale p{
-  margin:0;
+
+.saleCard p{
   color:#ccc;
-  font-size:11px;
-  line-height:1.6;
-}
-.sale-buttons{
-  display:flex;
-  gap:8px;
-  margin-top:12px;
-}
-.sale-buttons button{
-  border:1px solid #555;
-  background:transparent;
-  color:white;
-  border-radius:10px;
-  padding:8px 11px;
+
   font-size:10px;
+
+  line-height:1.6;
+
+  margin:0;
 }
-.sale-buttons .check{
+
+.saleButtons{
+  display:flex;
+
+  gap:7px;
+
+  margin-top:11px;
+}
+
+.saleButtons button{
+  border:
+    1px solid #555;
+
+  background:transparent;
+
+  color:#fff;
+
+  border-radius:9px;
+
+  padding:
+    8px
+    10px;
+
+  font-size:9px;
+}
+
+.saleButtons .primary{
   background:#fff;
   color:#222;
-  border-color:#fff;
 }
 
-/* REVIEWS */
+/* =========================
+   REVIEWS
+========================= */
+
 .review{
   background:#fff;
-  border:1px solid #eee6de;
-  border-radius:18px;
-  padding:15px;
-  margin-bottom:10px;
-}
-.review-top{
-  display:flex;
-  justify-content:space-between;
-}
-.review-name{
-  font-weight:800;
-  font-size:13px;
-}
-.review-date{
-  font-size:10px;
-  color:#aaa;
-}
-.stars{color:#ffb52f;font-size:13px}
-.review p{
-  font-size:12px;
-  line-height:1.8;
-  margin:8px 0 0;
-  color:#555;
-}
-.review-score{
-  display:flex;
-  gap:5px;
-  margin-top:9px;
-  flex-wrap:wrap;
-}
-.review-score span{
-  font-size:9px;
-  background:#f5f1ec;
-  padding:5px 7px;
-  border-radius:7px;
+
+  border:
+    1px solid #eee4db;
+
+  border-radius:17px;
+
+  padding:14px;
+
+  margin-bottom:9px;
 }
 
-/* FOOTER */
-.footer{
-  padding:35px 18px 80px;
-  text-align:center;
-  color:#999;
-  font-size:10px;
+.reviewTop{
+  display:flex;
+
+  justify-content:space-between;
 }
+
+.reviewHotel{
+  font-size:12px;
+
+  font-weight:800;
+}
+
+.reviewMeta{
+  color:#999;
+
+  font-size:9px;
+
+  margin-top:2px;
+}
+
+.stars{
+  color:#f1a92b;
+
+  font-size:12px;
+}
+
+.review p{
+  color:#555;
+
+  font-size:11px;
+
+  line-height:1.75;
+
+  margin:
+    7px
+    0;
+}
+
+.reviewTags{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:4px;
+}
+
+.reviewTags span{
+  background:#f5f0ea;
+
+  padding:
+    5px
+    6px;
+
+  border-radius:7px;
+
+  font-size:8px;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+  margin:
+    5px
+    16px
+    20px;
+
+  padding:17px;
+
+  background:#ffe8e4;
+
+  border-radius:20px;
+}
+
+.cta h2{
+  font-size:17px;
+
+  margin:
+    0
+    0
+    5px;
+}
+
+.cta p{
+  color:#666;
+
+  font-size:10px;
+
+  line-height:1.6;
+
+  margin:
+    0
+    0
+    10px;
+}
+
+.cta button{
+  border:0;
+
+  background:#ff665d;
+
+  color:#fff;
+
+  padding:
+    10px
+    14px;
+
+  border-radius:11px;
+
+  font-size:10px;
+
+  font-weight:800;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  text-align:center;
+
+  color:#aaa;
+
+  font-size:9px;
+
+  padding:
+    30px
+    15px
+    80px;
+}
+
 .footer strong{
   display:block;
+
   color:#333;
-  font-size:15px;
+
+  font-size:14px;
+
   margin-bottom:5px;
 }
 
-/* TOAST */
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:25px;
-  transform:translate(-50%,100px);
-  background:#252525;
-  color:white;
-  padding:12px 18px;
-  border-radius:30px;
-  font-size:12px;
-  z-index:100;
-  transition:.3s;
-  box-shadow:0 8px 25px rgba(0,0,0,.25);
-}
-.toast.show{
-  transform:translate(-50%,0);
-}
+/* =========================
+   MODAL
+========================= */
 
-/* MODAL */
 .modal{
   display:none;
+
   position:fixed;
+
   inset:0;
-  background:rgba(0,0,0,.5);
-  z-index:90;
+
+  z-index:100;
+
+  background:rgba(0,0,0,.62);
+
   align-items:flex-end;
+
+  justify-content:center;
 }
-.modal.show{display:flex}
-.modal-inner{
+
+.modal.show{
+  display:flex;
+}
+
+.modalSheet{
   width:100%;
-  max-width:560px;
-  margin:auto;
-  max-height:90vh;
-  overflow:auto;
+
+  max-width:620px;
+
+  max-height:92vh;
+
+  overflow-y:auto;
+
   background:#fffaf5;
-  border-radius:28px 28px 0 0;
-  padding:22px;
+
+  border-radius:
+    27px
+    27px
+    0
+    0;
+
+  padding:20px;
 }
-.modal-close{
+
+.closeButton{
   float:right;
+
+  width:36px;
+  height:36px;
+
   border:0;
-  background:#eee;
-  width:35px;
-  height:35px;
+
   border-radius:50%;
+
+  background:#eee;
 }
-.modal h2{
-  margin:5px 40px 8px 0;
+
+/* =========================
+   DETAIL
+========================= */
+
+.detailGallery{
+  display:flex;
+
+  gap:7px;
+
+  overflow-x:auto;
+
+  margin:
+    0
+    -20px
+    15px;
+
+  padding:
+    0
+    20px;
 }
-.modal p{
-  font-size:13px;
-  line-height:1.8;
-  color:#555;
+
+.detailGallery img{
+  width:250px;
+  height:180px;
+
+  object-fit:cover;
+
+  border-radius:17px;
 }
-.rating-big{
+
+.detailTitle{
+  font-size:23px;
+
+  margin:
+    5px
+    45px
+    5px
+    0;
+}
+
+.bigScore{
+  font-size:32px;
+
+  font-weight:900;
+}
+
+.ratingGrid{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:7px;
+
+  margin:
+    10px
+    0;
 }
-.rating-box{
-  background:white;
-  border-radius:14px;
+
+.ratingBox{
+  background:#fff;
+
+  border-radius:13px;
+
   padding:11px;
 }
-.rating-box b{
+
+.ratingBox b{
   display:block;
+
   font-size:20px;
 }
-.rating-box span{
+
+.ratingBox span{
+  font-size:9px;
+
   color:#999;
-  font-size:10px;
 }
 
-/* EMPTY */
+.bookingButton{
+  display:block;
+
+  width:100%;
+
+  margin-top:12px;
+
+  padding:14px;
+
+  background:#242424;
+
+  color:#fff;
+
+  text-decoration:none;
+
+  text-align:center;
+
+  border-radius:13px;
+
+  font-size:12px;
+
+  font-weight:900;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form label{
+  display:block;
+
+  font-size:10px;
+
+  font-weight:800;
+
+  margin:
+    12px
+    0
+    5px;
+}
+
+.form input,
+.form textarea,
+.form select{
+  width:100%;
+
+  border:
+    1px solid #dfd8d1;
+
+  background:#fff;
+
+  border-radius:11px;
+
+  padding:10px;
+
+  font-size:12px;
+
+  outline:none;
+}
+
+.form textarea{
+  min-height:110px;
+
+  resize:vertical;
+}
+
+.formSubmit{
+  width:100%;
+
+  border:0;
+
+  background:#ff665d;
+
+  color:#fff;
+
+  padding:13px;
+
+  border-radius:12px;
+
+  margin-top:13px;
+
+  font-weight:800;
+}
+
+.starInput{
+  font-size:27px;
+
+  letter-spacing:3px;
+
+  color:#ccc;
+}
+
+.starInput span.active{
+  color:#f1a92b;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profileCard{
+  background:#fff;
+
+  border:
+    1px solid #eee5dd;
+
+  border-radius:17px;
+
+  padding:15px;
+
+  margin-bottom:9px;
+}
+
+.profileRow{
+  display:flex;
+
+  justify-content:space-between;
+}
+
+.profileCard p{
+  font-size:11px;
+
+  line-height:1.7;
+
+  color:#666;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
 .empty{
   text-align:center;
-  padding:45px 15px;
+
   color:#999;
-}
-.empty b{
-  display:block;
-  font-size:40px;
-  margin-bottom:10px;
+
+  padding:50px 10px;
 }
 
-/* RESPONSIVE */
-@media(min-width:700px){
-  .app{
-    box-shadow:0 0 60px rgba(0,0,0,.08);
-  }
+.emptyIcon{
+  font-size:40px;
+
+  display:block;
+
+  margin-bottom:8px;
 }
+
+.resetButton{
+  border:0;
+
+  background:#242424;
+
+  color:#fff;
+
+  padding:
+    11px
+    18px;
+
+  border-radius:18px;
+
+  font-size:11px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+
+  z-index:200;
+
+  left:50%;
+
+  bottom:22px;
+
+  transform:
+    translate(-50%,100px);
+
+  background:#242424;
+
+  color:#fff;
+
+  padding:
+    11px
+    17px;
+
+  border-radius:25px;
+
+  font-size:11px;
+
+  transition:.25s;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.25);
+
+  white-space:nowrap;
+}
+
+.toast.show{
+  transform:
+    translate(-50%,0);
+}
+
+/* =========================
+   SEARCH RESULTS
+========================= */
+
+.searchResults{
+  display:none;
+
+  padding:
+    0
+    16px
+    15px;
+}
+
+.searchResults.show{
+  display:block;
+}
+
+.resultCard{
+  background:#fff;
+
+  border:
+    1px solid #eee5dc;
+
+  border-radius:15px;
+
+  padding:12px;
+
+  display:flex;
+
+  gap:10px;
+
+  margin-bottom:7px;
+}
+
+.resultCard img{
+  width:90px;
+  height:70px;
+
+  object-fit:cover;
+
+  border-radius:10px;
+}
+
+.resultInfo{
+  flex:1;
+}
+
+.resultInfo strong{
+  font-size:12px;
+}
+
+.resultInfo p{
+  margin:4px 0;
+
+  font-size:9px;
+
+  color:#999;
+}
+
+.resultInfo button{
+  border:0;
+
+  background:#242424;
+
+  color:#fff;
+
+  padding:
+    6px
+    9px;
+
+  border-radius:8px;
+
+  font-size:8px;
+}
+
 </style>
 </head>
 
 <body>
+
 <div class="app">
 
+<!-- =========================
+     HEADER
+========================= -->
+
 <header class="header">
-  <div class="logo">
+
+  <div class="headerTop">
+
     <div>
-      <h1>ベビ<span>キッズ</span></h1>
-      <div class="tagline">子供も楽しい、親も楽しい。</div>
+
+      <div class="logo">
+        ベビ<span>キッズ</span>
+      </div>
+
+      <div class="logoSub">
+        子供も楽しい、親も楽しい。
+      </div>
+
     </div>
-    <div class="header-actions">
-      <button class="icon-btn" onclick="showFavorites()">❤️</button>
+
+    <div class="headerButtons">
+
+      <button
+        class="roundButton"
+        onclick="openFavorites()">
+        ❤️
+      </button>
+
+      <button
+        class="roundButton"
+        onclick="openProfile()">
+        👤
+      </button>
+
     </div>
+
   </div>
+
 </header>
 
-<nav class="nav">
-  <button class="active" onclick="filterHotels('all',this)">おすすめ</button>
-  <button onclick="filterHotels('onsen',this)">♨️ 温泉</button>
-  <button onclick="filterHotels('sea',this)">🏖️ 海</button>
-  <button onclick="filterHotels('nature',this)">🌲 自然</button>
-  <button onclick="filterHotels('pool',this)">🏊 プール</button>
+
+<!-- =========================
+     CATEGORY
+========================= -->
+
+<nav class="categoryNav">
+
+  <button
+    class="categoryButton active"
+    onclick="filterHotels('all',this)">
+    おすすめ
+  </button>
+
+  <button
+    class="categoryButton"
+    onclick="filterHotels('onsen',this)">
+    ♨️ 温泉
+  </button>
+
+  <button
+    class="categoryButton"
+    onclick="filterHotels('sea',this)">
+    🏖️ 海
+  </button>
+
+  <button
+    class="categoryButton"
+    onclick="filterHotels('nature',this)">
+    🌲 自然
+  </button>
+
+  <button
+    class="categoryButton"
+    onclick="filterHotels('pool',this)">
+    🏊 プール
+  </button>
+
 </nav>
 
+
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
-  <h2>子供だけじゃない。<br><span>親も楽しめる宿。</span></h2>
+
+  <h1>
+    子供だけじゃない。<br>
+    <span>親も楽しめる宿。</span>
+  </h1>
+
   <p>
-    実際に泊まったパパ・ママの目線で、
-    「ここなら家族みんなが楽しめる」を探すホテルサイト。
+    パパ・ママ目線のリアルな体験を、
+    SNS感覚でチェック。
   </p>
+
 </section>
 
-<div id="deck" class="deck"></div>
 
-<div class="swipe-actions">
-  <button class="swipe-btn no" onclick="swipe('no')">👎</button>
-  <button class="swipe-btn yes" onclick="swipe('yes')">❤️</button>
+<!-- =========================
+     SEARCH
+========================= -->
+
+<div class="searchBox">
+
+  <input
+    id="searchInput"
+    class="searchInput"
+    placeholder="ホテル名・地域で検索">
+
+  <button
+    class="searchButton"
+    onclick="searchHotels()">
+    🔍
+  </button>
+
 </div>
 
-<section class="section">
-  <div class="section-head">
-    <h3>🔥 今チェックしたいセール</h3>
-    <span>気になるものだけ</span>
+
+<div
+  id="searchResults"
+  class="searchResults">
+</div>
+
+
+<!-- =========================
+     FILTER
+========================= -->
+
+<div class="filterArea">
+
+  <div class="filterScroll">
+
+    <button
+      class="filterChip active"
+      onclick="setBudget('all',this)">
+      予算すべて
+    </button>
+
+    <button
+      class="filterChip"
+      onclick="setBudget(2,this)">
+      ～2万円
+    </button>
+
+    <button
+      class="filterChip"
+      onclick="setBudget(3,this)">
+      ～3万円
+    </button>
+
+    <button
+      class="filterChip"
+      onclick="setBudget(4,this)">
+      ～5万円
+    </button>
+
+    <button
+      class="filterChip"
+      onclick="setAge('baby',this)">
+      🍼 0～2歳
+    </button>
+
+    <button
+      class="filterChip"
+      onclick="setAge('kid',this)">
+      👦 3～6歳
+    </button>
+
+    <button
+      class="filterChip"
+      onclick="setAge('school',this)">
+      🎒 小学生
+    </button>
+
   </div>
-  <div id="sales"></div>
-</section>
+
+</div>
+
+
+<!-- =========================
+     DECK
+========================= -->
+
+<div class="deckWrap">
+
+  <div
+    id="deck"
+    class="deck">
+  </div>
+
+</div>
+
+
+<!-- =========================
+     ACTIONS
+========================= -->
+
+<div class="swipeActions">
+
+  <button
+    class="swipeButton swipeNo"
+    onclick="swipe('no')">
+    👎
+  </button>
+
+  <button
+    class="swipeButton swipeYes"
+    onclick="swipe('yes')">
+    ❤️
+  </button>
+
+</div>
+
+<div class="swipeHint">
+
+  左右スワイプでも判定できます
+  ｜下へスクロールできます
+
+</div>
+
+
+<!-- =========================
+     SALE
+========================= -->
 
 <section class="section">
-  <div class="section-head">
-    <h3>💬 宿泊体験レビュー</h3>
-    <span>リアルな家族目線</span>
+
+  <div class="sectionHeader">
+
+    <h2>
+      🔥 今チェックしたい
+    </h2>
+
+    <span>
+      PICK UP
+    </span>
+
   </div>
-  <div id="reviews"></div>
+
+  <div id="sales"></div>
+
 </section>
+
+
+<!-- =========================
+     REVIEWS
+========================= -->
+
+<section class="section">
+
+  <div class="sectionHeader">
+
+    <h2>
+      💬 みんなの宿泊体験
+    </h2>
+
+    <span>
+      新着レビュー
+    </span>
+
+  </div>
+
+  <div id="reviews"></div>
+
+</section>
+
+
+<!-- =========================
+     REVIEW CTA
+========================= -->
+
+<div class="cta">
+
+  <h2>
+    📣 あなたの体験を教えて
+  </h2>
+
+  <p>
+    子連れ旅行で
+    「ここ最高だった」
+    「ここは微妙だった」
+    を次の家族に共有しよう。
+  </p>
+
+  <button
+    onclick="openReviewForm()">
+    口コミを投稿する
+  </button>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer class="footer">
-  <strong>ベビキッズ</strong>
+
+  <strong>
+    ベビキッズ
+  </strong>
+
   子供も楽しい、親も楽しい。
+
   <br><br>
-  ※掲載内容は編集部・利用者の宿泊体験をもとにした情報です。
+
+  掲載情報・口コミは体験者の投稿をもとにしています。
+
 </footer>
 
-<div id="toast" class="toast"></div>
+</div>
 
-<div id="modal" class="modal" onclick="closeModal(event)">
-  <div class="modal-inner">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <div id="modalContent"></div>
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+  id="modal"
+  class="modal"
+  onclick="closeModal(event)">
+
+  <div class="modalSheet">
+
+    <button
+      class="closeButton"
+      onclick="closeModal()">
+      ×
+    </button>
+
+    <div id="modalBody"></div>
+
   </div>
-</div>
 
 </div>
+
+
+<div
+  id="toast"
+  class="toast">
+</div>
+
 
 <script>
 
-/* =====================================================
-   HOTEL DATABASE
-   ===================================================== */
+/* ============================================================
+   HOTEL DATA
+============================================================ */
 
 const hotels = [
 
 {
- id:"halekulani",
- name:"ハレクラニ沖縄",
- area:"沖縄・恩納村",
- type:["sea"],
- score:4.8,
- child:4.6,
- parent:4.9,
- food:4.7,
- bath:4.5,
- play:4.2,
- cost:3.2,
- tags:["スタッフ力","海","プール","パンケーキ"],
- badge:"親満足度が高い",
- image:"",
- short:"スタッフのサービス力が圧倒的。高いけど、オフシーズンなら狙い目。",
- experience:
- "スタッフ力はディズニー並みという印象。夕食のHouse Without A Keyのライブは雰囲気が最高。プールも圧倒的に気持ちいい。価格は高めなので、庶民目線ならオフシーズンがおすすめ。",
- highlight:
- "朝食のパンケーキも有名。子連れでも落ち着いて座りやすく、朝の時間を家族で楽しみやすい。",
- stay:"オフシーズンでも十分楽しめる",
- recommendation:"親の満足度を重視する家族に"
+  id:"halekulani",
+
+  name:"ハレクラニ沖縄",
+
+  area:"沖縄・恩納村",
+
+  type:["sea","pool"],
+
+  score:4.8,
+
+  child:4.6,
+  parent:4.9,
+  food:4.7,
+  bath:4.5,
+  play:4.2,
+  cost:3.2,
+
+  budget:5,
+
+  ages:["baby","kid","school"],
+
+  tags:[
+    "スタッフ力",
+    "海",
+    "プール",
+    "パンケーキ"
+  ],
+
+  badge:"親満足度が高い",
+
+  images:[
+    "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=85"
+  ],
+
+  short:
+    "スタッフのサービス力が圧倒的。高いけどオフシーズンなら狙い目。",
+
+  story:
+    "スタッフ力は圧倒的。プールや海を楽しみながら、親もホテルそのものを楽しみやすい。",
+
+  highlight:
+    "朝食のパンケーキも人気。親の満足度を重視する家族におすすめ。",
+
+  booking:
+    "https://www.halekulaniokinawa.com/"
 },
 
 {
- id:"haimuru",
- name:"はいむるぶし",
- area:"沖縄・小浜島",
- type:["sea"],
- score:4.9,
- child:4.8,
- parent:4.9,
- food:4.7,
- bath:4.0,
- play:4.9,
- cost:3.7,
- tags:["絶景","水牛","プール","南十字星"],
- badge:"リゾート感★★★★★",
- short:"遠い。でも、行ってしまえば最高。2泊以上推奨。",
- experience:
- "子連れだと行くまでが大変なので2泊以上がおすすめ。でも到着してしまえば最高。綺麗な海と子供も楽しめるプール、バギーカート、水牛、昆虫博物館など、とにかく非日常感がすごい。",
- highlight:
- "夜は南十字星。食事も楽しめる。『ここに来ないと味わえない』というリゾート感は唯一無二。",
- stay:"2泊以上がおすすめ",
- recommendation:"海とリゾートを思い切り楽しみたい家族に"
-},
+  id:"haimuru",
 
-{
- id:"shigira",
- name:"シギラベイサイドスイート アラマンダ",
- area:"沖縄・宮古島",
- type:["sea","pool"],
- score:4.6,
- child:4.8,
- parent:4.5,
- food:4.1,
- bath:4.0,
- play:4.8,
- cost:4.0,
- tags:["宮古島","ウミガメ","プール","海"],
- badge:"海・プール派に",
- short:"海とプール好きならかなり強い。南国感はトップクラス。",
- experience:
- "ホテル内プールの南国感が最高。プールサイドでビールやメロンパフェを楽しめる。ウミガメへの餌やりも子供が大喜び。ウミガメのぬいぐるみまで欲しくなる。",
- highlight:
- "朝食は雪塩ホイップバターを焼いたパンに乗せるのが個人的な大ヒット。夕食はリゾート内に選択肢が多いので早めの予約がおすすめ。",
- stay:"2泊以上でも楽しみやすい",
- recommendation:"海・プールを中心に遊びたい家族に"
-},
+  name:"はいむるぶし",
 
-{
- id:"key",
- name:"THE KEY HIGHLAND NASU",
- area:"栃木・那須",
- type:["onsen","pool","nature"],
- score:4.9,
- child:4.8,
- parent:5.0,
- food:5.0,
- bath:5.0,
- play:4.6,
- cost:4.3,
- tags:["森のスパ","サウナ","オールインクルーシブ","食事"],
- badge:"編集部イチオシ",
- short:"食事・温泉・サウナが強すぎる。周辺観光も充実。",
- experience:
- "夕食・朝食のレベルが高すぎる。ワインに合うものも多く、子連れが多いのにホテル内は大人専用のような落ち着いた雰囲気。",
- highlight:
- "室内プールがあるので小さい子供連れもOK。そして森のスパが唯一無二。森の中の露天風呂とサウナは、妻から『もう一度行きたい』と何度も言われるほど。",
- stay:"1泊でも満足度が高い",
- recommendation:"親も本気で癒やされたい家族に"
-},
+  area:"沖縄・小浜島",
 
-{
- id:"tomamu",
- name:"星野リゾート リゾナーレトマム",
- area:"北海道・トマム",
- type:["nature","pool"],
- score:4.8,
- child:4.9,
- parent:4.8,
- food:4.7,
- bath:4.1,
- play:5.0,
- cost:3.8,
- tags:["雲海","牧場","バギー","鹿"],
- badge:"6歳未満なら特に",
- short:"広いスイート、ジャグジー、アクティビティ。3泊でも足りない。",
- experience:
- "トマム・ザ・タワーと悩むけど、6歳未満なら個人的にはリゾナーレ。部屋が広いスイートでジャグジーもあり、雲海ワゴンでも並ばなくて済むのが嬉しい。",
- highlight:
- "通路に普通に鹿がいて子供が大興奮。バギー、牛への餌やり、子牛へのミルクなどアクティビティも豊富。ホタルストリートの食事や毎晩の花火も楽しい。",
- stay:"3泊でも足りない",
- recommendation:"子供中心の北海道旅行をしたい家族に"
-},
+  type:["sea"],
 
-{
- id:"yatsugatake",
- name:"グランドメルキュール八ヶ岳",
- area:"山梨・八ヶ岳",
- type:["onsen","nature"],
- score:4.7,
- child:4.9,
- parent:4.8,
- food:4.4,
- bath:4.8,
- play:5.0,
- cost:4.6,
- tags:["遊び場","温泉","ラウンジ","星空"],
- badge:"子連れ旅行の本命",
- short:"父は子供と遊ぶ、母は温泉。最後は家族でラウンジ。",
- experience:
- "子供を遊ばせながら親もそれぞれ楽しめるバランスが魅力。父親が子供と遊んでいる間に母親が温泉へ、そして風呂上がりは家族でラウンジ。",
- highlight:
- "近くに牧場・動物園など子供が遊べる場所が多い。風呂上がりの甘酒を家族で楽しみ、夜は星空が格別。『子供も楽しい、親も楽しい』を一番イメージしやすい宿。",
- stay:"1〜2泊に向く",
- recommendation:"家族旅行初心者にもおすすめ"
-}
-
-];
-
-
-/* =====================================================
-   STATE
-   ===================================================== */
-
-let currentHotels=[...hotels];
-let currentIndex=0;
-
-let liked=JSON.parse(localStorage.getItem("babyKidsLiked")||"[]");
-let rejected=JSON.parse(localStorage.getItem("babyKidsRejected")||"[]");
-let dismissedSales=JSON.parse(localStorage.getItem("babyKidsSales")||"[]");
-
-
-/* =====================================================
-   CARD
-   ===================================================== */
-
-function renderDeck(){
-
- const deck=document.getElementById("deck");
-
- if(currentIndex>=currentHotels.length){
-   deck.innerHTML=`
-   <div class="empty">
-     <b>🎉</b>
-     <strong>全部チェックしました！</strong>
-     <p>気になる宿をもう一度見たい？</p>
-     <button onclick="resetDeck()" style="
-       border:0;
-       background:#252525;
-       color:white;
-       padding:12px 20px;
-       border-radius:20px;
-     ">もう一度見る</button>
-   </div>`;
-   return;
- }
-
- const visible=currentHotels.slice(currentIndex,currentIndex+3);
-
- deck.innerHTML=visible.map((hotel,i)=>{
-
-   return `
-   <article class="card" data-id="${hotel.id}" style="z-index:${10-i};transform:scale(${1-i*.035}) translateY(${i*10}px)">
-     
-     <div class="card-image">
-
-       ${i===0?`<div class="badge">${hotel.badge}</div>`:""}
-
-       <button class="favorite" onclick="event.stopPropagation();toggleLike('${hotel.id}')">
-         ${liked.includes(hotel.id)?"❤️":"♡"}
-       </button>
-
-       <div>
-         <div class="place">${hotel.area}</div>
-         <div class="card-title">${hotel.name}</div>
-       </div>
-
-     </div>
-
-     <div class="card-body">
-
-       <div class="score-row">
-         <div>
-           <div class="score">${hotel.score}<small>/5.0</small></div>
-           <div style="font-size:10px;color:#999">ベビキッズ体験スコア</div>
-         </div>
-
-         <button onclick="openHotel('${hotel.id}')" style="
-           border:0;
-           background:#f5f1ec;
-           padding:9px 12px;
-           border-radius:12px;
-           font-size:10px;
-         ">詳しく見る</button>
-       </div>
-
-       <div class="tags">
-         ${hotel.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
-       </div>
-
-       <div class="experience">
-         <strong>実体験：</strong>${hotel.short}
-       </div>
-
-       <div class="mini-grid">
-         <div class="mini">
-           <b>${hotel.child}</b>
-           <span>子供</span>
-         </div>
-         <div class="mini">
-           <b>${hotel.parent}</b>
-           <span>親</span>
-         </div>
-         <div class="mini">
-           <b>${hotel.play}</b>
-           <span>遊び</span>
-         </div>
-       </div>
-
-     </div>
-
-   </article>
-   `;
- }).join("");
-
- enableSwipe();
-
-}
-
-
-/* =====================================================
-   SWIPE
-   ===================================================== */
-
-function enableSwipe(){
-
- const card=document.querySelector(".card");
- if(!card)return;
-
- let startX=0;
- let currentX=0;
- let dragging=false;
-
- card.addEventListener("pointerdown",e=>{
-   if(e.target.closest("button"))return;
-   startX=e.clientX;
-   dragging=true;
-   card.setPointerCapture(e.pointerId);
- });
-
- card.addEventListener("pointermove",e=>{
-   if(!dragging)return;
-   currentX=e.clientX-startX;
-   card.style.transform=`translateX(${currentX}px) rotate(${currentX/18}deg)`;
- });
-
- card.addEventListener("pointerup",()=>{
-   if(!dragging)return;
-   dragging=false;
-
-   if(Math.abs(currentX)>100){
-      swipe(currentX>0?"yes":"no");
-   }else{
-      card.style.transform="";
-      renderDeck();
-   }
-   currentX=0;
- });
-}
-
-
-function swipe(type){
-
- const hotel=currentHotels[currentIndex];
- if(!hotel)return;
-
- const card=document.querySelector(".card");
-
- if(type==="yes"){
-
-   if(!liked.includes(hotel.id)){
-     liked.push(hotel.id);
-     localStorage.setItem("babyKidsLiked",JSON.stringify(liked));
-   }
-
-   if(card){
-     card.style.transform="translateX(120%) rotate(20deg)";
-     card.style.opacity="0";
-   }
-
-   toast(`❤️ ${hotel.name}をお気に入りに追加`);
-
- }else{
-
-   if(!rejected.includes(hotel.id)){
-     rejected.push(hotel.id);
-     localStorage.setItem("babyKidsRejected",JSON.stringify(rejected));
-   }
-
-   if(card){
-     card.style.transform="translateX(-120%) rotate(-20deg)";
-     card.style.opacity="0";
-   }
-
-   toast("今回はスキップしました");
- }
-
- currentIndex++;
-
- setTimeout(renderDeck,260);
-}
-
-
-/* =====================================================
-   FILTER
-   ===================================================== */
-
-function filterHotels(type,button){
-
- document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
- button.classList.add("active");
-
- if(type==="all"){
-   currentHotels=[...hotels];
- }else{
-   currentHotels=hotels.filter(h=>h.type.includes(type));
- }
-
- currentIndex=0;
- renderDeck();
-}
-
-
-/* =====================================================
-   FAVORITES
-   ===================================================== */
-
-function toggleLike(id){
-
- if(liked.includes(id)){
-   liked=liked.filter(x=>x!==id);
-   toast("お気に入りから削除しました");
- }else{
-   liked.push(id);
-   toast("❤️ お気に入りに追加しました");
- }
-
- localStorage.setItem("babyKidsLiked",JSON.stringify(liked));
- renderDeck();
-}
-
-
-function showFavorites(){
-
- const fav=hotels.filter(h=>liked.includes(h.id));
-
- if(!fav.length){
-   openModal(`
-     <h2>❤️ お気に入り</h2>
-     <p>まだお気に入りの宿がありません。</p>
-     <p>気になる宿で❤️を押してみてください。</p>
-   `);
-   return;
- }
-
- openModal(`
-   <h2>❤️ お気に入り</h2>
-   ${fav.map(h=>`
-     <div class="review" onclick="openHotel('${h.id}')">
-       <div class="review-top">
-         <span class="review-name">${h.name}</span>
-         <span class="stars">★ ${h.score}</span>
-       </div>
-       <p>${h.short}</p>
-     </div>
-   `).join("")}
- `);
-}
-
-
-/* =====================================================
-   HOTEL DETAIL
-   ===================================================== */
-
-function openHotel(id){
-
- const h=hotels.find(x=>x.id===id);
- if(!h)return;
-
- openModal(`
-   <div style="font-size:11px;color:#999">${h.area}</div>
-   <h2>${h.name}</h2>
-
-   <div style="font-size:32px;font-weight:900">
-     ${h.score}<span style="font-size:12px;color:#999"> / 5.0</span>
-   </div>
-
-   <p>${h.experience}</p>
-
-   <h3>👨‍👩‍👧 ベビキッズ評価</h3>
-
-   <div class="rating-big">
-     <div class="rating-box">
-       <b>${h.child}</b>
-       <span>子供満足度</span>
-     </div>
-     <div class="rating-box">
-       <b>${h.parent}</b>
-       <span>親満足度</span>
-     </div>
-     <div class="rating-box">
-       <b>${h.food}</b>
-       <span>食事</span>
-     </div>
-     <div class="rating-box">
-       <b>${h.bath}</b>
-       <span>風呂・温泉</span>
-     </div>
-     <div class="rating-box">
-       <b>${h.play}</b>
-       <span>遊び</span>
-     </div>
-     <div class="rating-box">
-       <b>${h.cost}</b>
-       <span>コスパ</span>
-     </div>
-   </div>
-
-   <h3 style="margin-top:22px">📝 実体験メモ</h3>
-   <p>${h.highlight}</p>
-
-   <div style="
-     background:#f5f1ec;
-     padding:14px;
-     border-radius:15px;
-     font-size:12px;
-     line-height:1.7;
-   ">
-     <strong>おすすめ泊数：</strong>${h.stay}<br>
-     <strong>こんな家族に：</strong>${h.recommendation}
-   </div>
-
-   <button onclick="toggleLike('${h.id}');closeModal()" style="
-     width:100%;
-     margin-top:15px;
-     border:0;
-     background:#ff6b5e;
-     color:white;
-     padding:14px;
-     border-radius:15px;
-     font-weight:700;
-   ">
-     ${liked.includes(h.id)?"❤️ お気に入りから外す":"❤️ お気に入りに入れる"}
-   </button>
- `);
-}
-
-
-/* =====================================================
-   SALES
-   ===================================================== */
-
-const sales=[
- {
-   id:"sale-key",
-   hotel:"THE KEY HIGHLAND NASU",
-   title:"那須の森で、温泉・サウナ・食事をまとめて楽しむ",
-   text:"価格が気になる宿だからこそ、セール時は要チェック。"
- },
- {
-   id:"sale-okinawa",
-   hotel:"ハレクラニ沖縄",
-   title:"高級リゾートはオフシーズンを狙う",
-   text:"実体験では、オフシーズンでも十分にホテルを楽しめる。"
- },
- {
-   id:"sale-shigira",
-   hotel:"シギラベイサイドスイート アラマンダ",
-   title:"梅雨入り前の宮古島が狙い目",
-   text:"海・プール派なら、暑すぎず空いている時期も候補。"
- }
-];
-
-
-function renderSales(){
-
- const el=document.getElementById("sales");
-
- const active=sales.filter(s=>!dismissedSales.includes(s.id));
-
- if(!active.length){
-   el.innerHTML=`
-     <div style="
-       background:#f5f1ec;
-       padding:20px;
-       border-radius:18px;
-       text-align:center;
-       color:#888;
-       font-size:12px;
-     ">
-       今回スキップしたセールは表示しません。<br>
-       新しいセールが入ると、またここに表示されます。
-     </div>`;
-   return;
- }
-
- el.innerHTML=active.map(s=>`
-   <div class="sale">
-     <span class="sale-label">🔥 PICK UP</span>
-     <h4>${s.hotel}</h4>
-     <p>${s.title}<br>${s.text}</p>
-     <div class="sale-buttons">
-       <button class="check" onclick="saleCheck('${s.id}')">気になる</button>
-       <button onclick="dismissSale('${s.id}')">今回は違う</button>
-     </div>
-   </div>
- `).join("");
-}
-
-
-function saleCheck(id){
-
- const s=sales.find(x=>x.id===id);
-
- if(s){
-   toast(`🔥 ${s.hotel}をチェック`);
- }
-}
-
-
-function dismissSale(id){
-
- dismissedSales.push(id);
- localStorage.setItem("babyKidsSales",JSON.stringify(dismissedSales));
-
- renderSales();
-
- toast("このセールは今後表示しません");
-}
-
-
-/* =====================================================
-   REVIEWS
-   ===================================================== */
-
-const reviews=[
- {
-  name:"編集部・家族旅行",
-  hotel:"THE KEY HIGHLAND NASU",
-  score:5,
-  text:"妻が『また行きたい』と言い続けている宿。食事と森のスパが強すぎる。子供が楽しめるのに親もしっかり休める。",
-  tags:["親満足度★★★★★","食事★★★★★","温泉★★★★★"]
- },
- {
-  name:"編集部・家族旅行",
-  hotel:"はいむるぶし",
   score:4.9,
-  text:"遠い。でも到着してしまえば納得。海、プール、水牛、バギー、南十字星。『旅行に来た』という感覚が圧倒的。",
-  tags:["子供満足度★★★★★","リゾート★★★★★","海★★★★★"]
- },
- {
-  name:"編集部・家族旅行",
-  hotel:"星野リゾート リゾナーレトマム",
-  score:4.8,
-  text:"3泊したのに全然足りなかった。鹿、牧場、バギー、牛への餌やり、花火。子供の思い出作りにはかなり強い。",
-  tags:["遊び★★★★★","子供★★★★★","北海道"]
- },
- {
-  name:"編集部・家族旅行",
-  hotel:"ハレクラニ沖縄",
-  score:4.8,
-  text:"価格は高い。ただスタッフ力が圧倒的。親が『ここに泊まってよかった』と思えるタイプのホテル。",
-  tags:["サービス★★★★★","親満足度★★★★★","オフシーズン"]
- }
-];
 
+  child:4.8,
+  parent:4.9,
+  food:4.7,
+  bath:4.0,
+  play:4.9,
+  cost:3.7,
 
-function renderReviews(){
+  budget:4,
 
- document.getElementById("reviews").innerHTML=reviews.map(r=>`
-   <div class="review">
-     <div class="review-top">
-       <div>
-         <div class="review-name">${r.hotel}</div>
-         <div class="review-date">${r.name}</div>
-       </div>
-       <div class="stars">★ ${r.score}</div>
-     </div>
-     <p>${r.text}</p>
-     <div class="review-score">
-       ${r.tags.map(t=>`<span>${t}</span>`).join("")}
-     </div>
-   </div>
- `).join("");
-}
+  ages:["kid","school"],
 
+  tags:[
+    "絶景",
+    "水牛",
+    "プール",
+    "南十字星"
+  ],
 
-/* =====================================================
-   MODAL
-   ===================================================== */
+  badge:"リゾート感★★★★★",
 
-function openModal(html){
- document.getElementById("modalContent").innerHTML=html;
- document.getElementById("modal").classList.add("show");
-}
+  images:[
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1540202404-a2f29016b523?auto=format&fit=crop&w=1200&q=85"
+  ],
 
-function closeModal(e){
- if(!e || e.target===document.getElementById("modal")){
-   document.getElementById("modal").classList.remove("show");
- }
-}
+  short:
+    "遠い。でも行ってしまえば最高。2泊以上推奨。",
 
+  story:
+    "海・プール・バギー・水牛など子供が楽しめる非日常体験が豊富。",
 
-/* =====================================================
-   TOAST
-   ===================================================== */
+  highlight:
+    "夜の星空や南十字星まで含めて、ここに来ないと味わえない旅行感が魅力。",
 
-let toastTimer;
+  booking:
+    "https://www.haimurubushi.co.jp/"
+},
 
-function toast(message){
+{
+  id:"shigira",
 
- const el=document.getElementById("toast");
+  name:"シギラベイサイドスイート アラマンダ",
 
- el.textContent=message;
- el.classList.add("show");
+  area:"沖縄・宮古島",
 
- clearTimeout(toastTimer);
+  type:["sea","pool"],
 
- toastTimer=setTimeout(()=>{
-   el.classList.remove("show");
- },1800);
-}
+  score:4.6,
 
+  child:4.8,
+  parent:4.5,
+  food:4.1,
+  bath:4.0,
+  play:4.8,
+  cost:4.0,
 
-/* =====================================================
-   RESET
-   ===================================================== */
+  budget:4,
 
-function resetDeck(){
- currentHotels=[...hotels];
- currentIndex=0;
- renderDeck();
-}
+  ages:["baby","kid","school"],
 
+  tags:[
+    "宮古島",
+    "ウミガメ",
+    "プール",
+    "海"
+  ],
 
-/* =====================================================
-   START
-   ===================================================== */
+  badge:"海・プール派に",
 
-renderDeck();
-renderSales();
-renderReviews();
+  images:[
+    "https://images.unsplash.com/photo-1505881502353-a1986add3762?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1200&q=85"
+  ],
 
-</script>
+  short:
+    "海とプール好きならかなり強い。南国感はトップクラス。",
 
-</body>
-</html>
+  story:
+    "プールの南国感が強く、子供が喜ぶ体験も豊富。",
+
+  highlight:
+    "海・プール中心の家族旅行ならかなり相性がいいホテル。",
+
+  booking:
+    "https://shigira.com/hotel/allamanda"
+},
+
+{
+  id:"key",
+
+  name:"THE KEY HIGHLAND NASU",
+
+  area:"栃木・那須",
+
+  type:["onsen","pool","nature"],
+
+  score:4.9,
+
+  child:4.8,
+  parent:5.0,
+  food:5.0,
+  bath:5.0,
+  play:4.6,
+  cost:4.3,
+
+  budget:3,
+
+  ages:["baby","kid","school"],
+
+  tags:[
+    "森のスパ",
+    "サウナ",
+   
